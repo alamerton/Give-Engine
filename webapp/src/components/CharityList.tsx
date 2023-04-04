@@ -16,7 +16,7 @@ import axios from "axios";
 interface ICharity {
   id: number;
   name: string;
-  website: string;
+  url: string;
 }
 
 const CharityList: React.FC = () => {
