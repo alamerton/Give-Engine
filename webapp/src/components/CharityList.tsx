@@ -10,19 +10,27 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-function returnCharityList(element: React.ReactElement) {
-  return [0, 1, 2, 3, 4, 5, 6, 7, 8].map(
-    // Imagine the list being mapped here is the list of charities
-    (value) =>
-      React.cloneElement(element, {
-        key: value,
-      })
-  );
+interface ICharity {
+  id: number;
+  name: string;
+  website: string;
 }
 
-const CharityList = () => {
+const CharityList: React.FC = () => {
+
+  const [charities, setCharities] = useState<ICharity[]>([]);
+
+  useEffect(() => {
+    const fetchCharities = async () => {
+      const response = await axios.get<ICharity[]>('http://localhost:5000/charities');
+      setCharities(response.data);
+    };
+    fetchCharities();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -32,7 +40,7 @@ const CharityList = () => {
       }}
     >
       <List sx={{ width: "80%" }}>
-        {returnCharityList(
+        {charities.map((charity) =>
           <Card
             sx={{
               padding: "2rem",
@@ -42,7 +50,7 @@ const CharityList = () => {
             }}
           >
             <Box>
-              <Typography variant="h5">Charity Name.</Typography>
+              <Typography variant="h5">{charity.name}.</Typography>
               <Typography variant="body1">Description</Typography>
             </Box>
             <Box sx={{ marginLeft: "auto" }}>
