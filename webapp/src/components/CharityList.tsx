@@ -1,6 +1,8 @@
 import {
   Box,
+  Button,
   Card,
+  Link,
   List,
   ListItem,
   ListItemText,
@@ -51,19 +53,22 @@ const CharityList: React.FC = () => {
             }}
           >
             <Box>
-              <Typography variant="h5">{charity.name}.</Typography>
-              <Typography variant="body1">Description</Typography>
-            </Box>
-            <Box sx={{ marginLeft: "auto" }}>
-              <Typography variant="h5">Give Engine Rating</Typography>
+              <Typography variant="h5">{charity.name}</Typography>
               <Box sx={{ margin: "auto", display: "flex" }}>
                 {/* Icon row goes here, number of grey icons depends on rating
                 create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <StarBorderIcon />
+                <StarIcon sx={{ color: "green" }} />
+                <StarIcon sx={{ color: "green" }} />
+                <StarIcon sx={{ color: "green" }} />
+                <StarIcon sx={{ color: "green" }} />
+                <StarBorderIcon sx={{ color: "green" }} />
+              </Box>
+            </Box>
+            <Box sx={{ marginLeft: "auto" }}>
+              <Box sx={{ margin: "auto", alignItems: "center" }}>
+                <Button variant="contained" href={charity.url}>
+                  Donate
+                </Button>
               </Box>
             </Box>
           </Card>
