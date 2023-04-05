@@ -21,6 +21,12 @@ interface ICharity {
   url: string;
 }
 
+function toTitleCase(str: string) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+}
+
 const CharityList: React.FC = () => {
   const [charities, setCharities] = useState<ICharity[]>([]);
 
@@ -53,7 +59,7 @@ const CharityList: React.FC = () => {
             }}
           >
             <Box>
-              <Typography variant="h5">{charity.name}</Typography>
+              <Typography variant="h5">{toTitleCase(charity.name)}</Typography>
               <Box sx={{ margin: "auto", display: "flex" }}>
                 {/* Icon row goes here, number of grey icons depends on rating
                 create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
