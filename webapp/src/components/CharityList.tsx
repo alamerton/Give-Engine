@@ -24,7 +24,9 @@ const CharityList: React.FC = () => {
 
   useEffect(() => {
     const fetchCharities = async () => {
-      const response = await axios.get("http://localhost:5000/charities");
+      const response = await axios.get<{ charities: ICharity[] }>(
+        "http://localhost:5000/charities"
+      );
       setCharities(response.data.charities);
     };
     fetchCharities();
