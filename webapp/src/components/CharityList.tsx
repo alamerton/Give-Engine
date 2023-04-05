@@ -20,13 +20,12 @@ interface ICharity {
 }
 
 const CharityList: React.FC = () => {
-
   const [charities, setCharities] = useState<ICharity[]>([]);
 
   useEffect(() => {
     const fetchCharities = async () => {
-      const response = await axios.get<ICharity[]>('http://localhost:5000/charities');
-      setCharities(response.data);
+      const response = await axios.get("http://localhost:5000/charities");
+      setCharities(response.data.charities);
     };
     fetchCharities();
   }, []);
@@ -40,7 +39,7 @@ const CharityList: React.FC = () => {
       }}
     >
       <List sx={{ width: "80%" }}>
-        {charities.map((charity) =>
+        {charities.map((charity) => (
           <Card
             sx={{
               padding: "2rem",
@@ -66,7 +65,7 @@ const CharityList: React.FC = () => {
               </Box>
             </Box>
           </Card>
-        )}
+        ))}
       </List>
     </Box>
   );
