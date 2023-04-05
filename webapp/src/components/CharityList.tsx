@@ -71,8 +71,14 @@ const CharityList: React.FC = () => {
                 <StarBorderIcon sx={{ color: "green" }} />
               </Box>
             </Box>
-            <Box sx={{ marginLeft: "auto" }}>
-              <Box sx={{ margin: "auto", alignItems: "center" }}>
+            <Box
+              sx={{
+                marginLeft: "auto",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Box sx={{}}>
                 <Button variant="contained" href={charity.url}>
                   Donate
                 </Button>
