@@ -20,12 +20,12 @@ export default function SignInForm() {
   // getting the event handlers from our custom hook
   const { onChange, onSubmit, values } = useForm(
     loginUserCallback,
-    initialState
+    
   );
 
   // a submit function that will execute upon form submission
   async function loginUserCallback() {
-    // send "values" to database
+    
   }
 
   return (
@@ -82,7 +82,7 @@ export default function SignInForm() {
             <Button
               type="submit"
               variant="contained"
-              sx={{ width: "60%", margin: "auto" }}
+              sx={{ width: "60%", margin: "auto" }} 
             >
               Login
             </Button>
