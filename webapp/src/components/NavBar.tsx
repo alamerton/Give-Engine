@@ -14,7 +14,7 @@ export default function ButtonAppBar() {
             component="img"
             sx={{
               height: 50,
-              margin: "0 1rem 0 1rem",
+              margin: "0 0.5rem 0 0",
             }}
             alt="Logo"
             src={process.env.PUBLIC_URL + "give-engine-logo.png"}
