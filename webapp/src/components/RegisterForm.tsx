@@ -18,22 +18,23 @@ export default function SignInForm() {
   };
 
   // getting the event handlers from our custom hook
-  const { onChange, onSubmit, values } = useForm(
-    loginUserCallback,
-    
-  );
+  const { onChange, onSubmit, values } = useForm(loginUserCallback);
 
   // a submit function that will execute upon form submission
-  async function loginUserCallback() {
-    
-  }
+  async function loginUserCallback() {}
 
   return (
     <Box sx={{ paddingTop: "2rem" }}>
       <Paper
         sx={{
           top: "5rem",
-          width: "30%",
+          width: {
+            xs: "90%",
+            sm: "60%",
+            md: "50%",
+            lg: "40%",
+            xl: "30%",
+          },
           margin: "auto",
           display: "flex",
           flexDirection: "column",
@@ -50,7 +51,7 @@ export default function SignInForm() {
               position: "relative",
               display: "flex",
               flexDirection: "column",
-              width: "60%",
+              width: "80%",
             }}
           >
             <TextField
@@ -82,7 +83,14 @@ export default function SignInForm() {
             <Button
               type="submit"
               variant="contained"
-              sx={{ width: "60%", margin: "auto" }} 
+              sx={{
+                width: {
+                  xs: "60%",
+                  sm: "50%",
+                  md: "40%",
+                },
+                margin: "auto",
+              }}
             >
               Login
             </Button>

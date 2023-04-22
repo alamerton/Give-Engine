@@ -56,9 +56,7 @@ export default function SignInForm() {
               position: "relative",
               display: "flex",
               flexDirection: "column",
-              width: {
-                xs: "80%",
-              },
+              width: "80%",
             }}
           >
             <TextField
