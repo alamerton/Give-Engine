@@ -54,7 +54,6 @@ const CharityList: React.FC = () => {
             sx={{
               padding: "2rem",
               margin: "1rem",
-              backgroundColor: "#F5F5F5",
               display: "flex",
             }}
           >

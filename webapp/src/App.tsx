@@ -8,7 +8,7 @@ import { routes as appRoutes } from "./routes";
 
 function App() {
   return (
-    <Box>
+    <Box sx={{ background: "whitesmoke", height: "100vh" }}>
       <Router>
         <CssBaseline />
         <NavBar />

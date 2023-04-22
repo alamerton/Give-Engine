@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 
 export default function LandingPage() {
   return (
-    <Box>
+    <Box sx={{ background: "whitesmoke" }}>
       <Banner />
       <CharityList />
     </Box>
