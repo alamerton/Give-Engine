@@ -1,4 +1,5 @@
 import Landing from "./pages/Home";
+import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import { FC } from "react";
 
@@ -19,10 +20,17 @@ export const routes: Array<Route> = [
     component: Landing,
   },
   {
-    key: "home-route",
+    key: "sign-in-route",
     title: "SignIn",
     path: "/signin",
     enabled: true,
     component: SignIn,
+  },
+  {
+    key: "register-route",
+    title: "Register",
+    path: "/register",
+    enabled: true,
+    component: Register,
   },
 ];

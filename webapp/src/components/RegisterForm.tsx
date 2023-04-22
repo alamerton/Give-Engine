@@ -42,7 +42,7 @@ export default function SignInForm() {
         <Typography
           sx={{ fontSize: "1.5rem", margin: "auto", padding: "1rem 0 1rem 0" }}
         >
-          Sign In
+          Register
         </Typography>
         <form onSubmit={onSubmit}>
           <Container
@@ -62,11 +62,20 @@ export default function SignInForm() {
               required
             />
             <TextField
-              sx={{ padding: "0.5rem 0 1rem 0" }}
+              sx={{ padding: "0.5rem 0 0.5rem 0" }}
               name="password"
               id="password"
               type="password"
               placeholder="Password"
+              onChange={onChange}
+              required
+            />
+            <TextField
+              sx={{ padding: " 0 0 1rem 0" }}
+              name="confirmPassword"
+              id="confirmPassword"
+              type="confirmPassword"
+              placeholder="Confirm Password"
               onChange={onChange}
               required
             />
@@ -78,7 +87,7 @@ export default function SignInForm() {
               Login
             </Button>
             <Link
-              href="/register"
+              href="#"
               underline="hover"
               sx={{ padding: "1rem 0 1rem 0", margin: "auto" }}
             >
