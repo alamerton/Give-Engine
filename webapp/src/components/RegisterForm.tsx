@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import axios from "axios";
 
 export default function SignInForm() {
   // defining the initial state for the form
@@ -21,7 +22,9 @@ export default function SignInForm() {
   const { onChange, onSubmit, values } = useForm(loginUserCallback);
 
   // a submit function that will execute upon form submission
-  async function loginUserCallback() {}
+  async function loginUserCallback() {
+    const response = await axios.post("create user url goes here", { values }); // type checking?
+  }
 
   return (
     <Box sx={{ paddingTop: "2rem" }}>
@@ -75,7 +78,7 @@ export default function SignInForm() {
               sx={{ padding: " 0 0 1rem 0" }}
               name="confirmPassword"
               id="confirmPassword"
-              type="confirmPassword"
+              type="password"
               placeholder="Confirm Password"
               onChange={onChange}
               required

@@ -25,7 +25,7 @@ export default function SignInForm() {
 
   // a submit function that will execute upon form submission
   async function loginUserCallback() {
-    // send "values" to database
+    console.log("These values were submitted:", values)
   }
 
   return (
