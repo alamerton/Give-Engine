@@ -53,23 +53,23 @@ const CharityList: React.FC = () => {
           <Card
             sx={{
               padding: "2rem",
-              margin: "2rem",
-              backgroundColor: "#EDF5FD",
+              margin: "1rem",
+              backgroundColor: "#F5F5F5",
               display: "flex",
             }}
           >
             <Box>
               <Typography variant="h5">{toTitleCase(charity.name)}</Typography>
-              <Box sx={{ margin: "auto", display: "flex" }}>
-                {/* Icon row goes here, number of grey icons depends on rating
-                create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
-                {/* Logic like 'if charity has rating...' to do the star system. For now the stars are just there for show */}
+              {/* Icon row goes here, number of grey icons depends on rating
+              create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
+              {/* Logic like 'if charity has rating...' to do the star system. For now the stars are just there for show */}
+              {/* <Box sx={{ margin: "auto", display: "flex" }}>
                 <StarIcon sx={{ color: "green" }} />
                 <StarIcon sx={{ color: "green" }} />
                 <StarIcon sx={{ color: "green" }} />
                 <StarIcon sx={{ color: "green" }} />
                 <StarBorderIcon sx={{ color: "green" }} />
-              </Box>
+              </Box> */}
             </Box>
             <Box
               sx={{

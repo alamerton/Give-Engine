@@ -1,16 +1,28 @@
-import { CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import NavBar from "./components/NavBar";
 import Banner from "./components/Banner";
 import CharityList from "./components/CharityList";
+import Landing from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { routes as appRoutes } from "./routes";
 
 function App() {
   return (
-    <div>
-      <CssBaseline />
-      <NavBar />
-      <Banner />
-      <CharityList />
-    </div>
+    <Box>
+      <Router>
+        <CssBaseline />
+        <NavBar />
+        <Routes>
+          {appRoutes.map((route) => (
+            <Route
+              key={route.key}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+        </Routes>
+      </Router>
+    </Box>
   );
 }
 
