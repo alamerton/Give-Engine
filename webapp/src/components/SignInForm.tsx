@@ -35,7 +35,18 @@ export default function SignInForm() {
         >
           Sign In
         </Typography>
-        <form onSubmit={onSubmit}> 
+        <form onSubmit={
+          async (event: React.SyntheticEvent) => {
+            event.preventDefault();
+            const target = event.target as typeof event.target & {
+              email: { value: string };
+              password: { value: string };
+            };
+            const email = target.email.value;
+            const password = target.password.value;
+            await handleSubmit(email, password, confirmPassword);
+          }
+        }> 
           <Container
             sx={{
               position: "relative",
