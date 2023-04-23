@@ -11,12 +11,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-enum Submission {
-  Success = 1,
-  ReEnterPassword,
-}
-
-export default function SignInForm() {
+export default function RegisterForm() {
   const navigate = useNavigate();
   async function handleSubmit(
     email: string,
