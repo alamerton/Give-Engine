@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useForm } from "../useForm";
+import React from "react";
 import {
   Box,
   Button,
@@ -10,20 +9,34 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+enum Submission {
+  Success = 1,
+  ReEnterPassword,
+}
 
 export default function SignInForm() {
-  // defining the initial state for the form
-  const initialState = {
-    email: "",
-    password: "",
-  };
-
-  // getting the event handlers from our custom hook
-  const { onChange, onSubmit, values } = useForm(loginUserCallback);
-
-  // a submit function that will execute upon form submission
-  async function loginUserCallback() {
-    const response = await axios.post("create user url goes here", { values }); // type checking?
+  const navigate = useNavigate();
+  async function handleSubmit(
+    email: string,
+    password: string,
+    confirmPassword: string
+  ) {
+    await axios
+      .post("http://localhost:5001/users/", {
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      })
+      .catch(function (error) {
+        if (error.response.status === 401) {
+          alert("Passwords do not match");
+        } else {
+          console.log(error.message);
+        }
+      });
+    navigate("/");
   }
 
   return (
@@ -48,7 +61,21 @@ export default function SignInForm() {
         >
           Register
         </Typography>
-        <form onSubmit={onSubmit}>
+        {/* https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events/ */}
+        <form
+          onSubmit={async (event: React.SyntheticEvent) => {
+            event.preventDefault();
+            const target = event.target as typeof event.target & {
+              email: { value: string };
+              password: { value: string };
+              confirmPassword: { value: string };
+            };
+            const email = target.email.value;
+            const password = target.password.value;
+            const confirmPassword = target.confirmPassword.value;
+            await handleSubmit(email, password, confirmPassword);
+          }}
+        >
           <Container
             sx={{
               position: "relative",
@@ -62,7 +89,6 @@ export default function SignInForm() {
               id="email"
               type="email"
               placeholder="Email"
-              onChange={onChange}
               required
             />
             <TextField
@@ -71,7 +97,6 @@ export default function SignInForm() {
               id="password"
               type="password"
               placeholder="Password"
-              onChange={onChange}
               required
             />
             <TextField
@@ -80,7 +105,6 @@ export default function SignInForm() {
               id="confirmPassword"
               type="password"
               placeholder="Confirm Password"
-              onChange={onChange}
               required
             />
             <Button
@@ -95,7 +119,7 @@ export default function SignInForm() {
                 margin: "auto",
               }}
             >
-              Login
+              Register
             </Button>
             <Link
               href="#"
