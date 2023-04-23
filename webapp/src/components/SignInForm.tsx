@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useForm } from "../useForm";
 import {
   Box,
   Button,
@@ -11,21 +10,7 @@ import {
 } from "@mui/material";
 
 export default function SignInForm() {
-  // defining the initial state for the form
-  const initialState = {
-    email: "",
-    password: "",
-  };
-
-  // getting the event handlers from our custom hook
-  const { onChange, onSubmit, values } = useForm(
-    loginUserCallback,
-    initialState
-  );
-
-  // a submit function that will execute upon form submission
-  async function loginUserCallback() {
-    console.log("These values were submitted:", values)
+  
   }
 
   return (
