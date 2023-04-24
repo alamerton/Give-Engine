@@ -76,11 +76,9 @@ const CharityList: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              <Box sx={{}}>
-                <Button variant="contained" href={charity.url}>
-                  Donate
-                </Button>
-              </Box>
+              <Button variant="contained" href={charity.url}>
+                Donate
+              </Button>
             </Box>
           </Card>
         ))}
