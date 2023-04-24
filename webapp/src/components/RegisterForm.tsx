@@ -31,6 +31,7 @@ export default function RegisterForm() {
           console.log(error.message);
         }
       });
+    UserProfile.setName(email)
     navigate("/");
   }
 
