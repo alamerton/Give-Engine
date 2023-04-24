@@ -1,3 +1,4 @@
+import Criteria from "./pages/Criteria";
 import Landing from "./pages/Home";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
@@ -38,6 +39,6 @@ export const routes: Array<Route> = [
     title: "Criteria Selection",
     path: "/criteria",
     enabled: true,
-    component: Register,
+    component: Criteria ,
   },
 ];

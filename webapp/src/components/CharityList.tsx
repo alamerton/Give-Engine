@@ -43,16 +43,15 @@ const CharityList: React.FC = () => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        width: "80%",
+        margin: "auto",
       }}
     >
-      <List sx={{ width: "80%" }}>
+      <List>
         {charities.map((charity) => (
           <Card
             sx={{
-              padding: "2rem",  
+              padding: "2rem",
               margin: "1rem",
               display: "flex",
             }}
