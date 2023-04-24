@@ -51,14 +51,19 @@ const CharityCriteriaList: React.FC = () => {
         margin: "auto",
       }}
     >
-      <List>
+      <List
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
         {charities.map((charity) => (
           <Card
             sx={{
               padding: "2rem",
               margin: "1rem",
               display: "flex",
-              float: "left",
               minWidth: "30rem",
             }}
           >
@@ -82,20 +87,20 @@ const CharityCriteriaList: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              {/* <FavoriteBorderIcon
-                sx={{ color: "inherit" }}
-              ></FavoriteBorderIcon> */}
-
               {isActive ? (
                 <FavoriteBorderIcon
+                  sx={{ color: "gold" }}
                   onClick={() => {
                     setIsActive(!isActive);
+                    // create like
                   }}
                 />
               ) : (
                 <FavoriteIcon
+                  sx={{ color: "gold" }}
                   onClick={() => {
                     setIsActive(!isActive);
+                    // remove like
                   }}
                 />
               )}
