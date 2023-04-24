@@ -34,8 +34,18 @@ async function createLike(charity: Charity) {
   }
 }
 
-function removeLike(charity: Charity) {
-  
+async function removeLike(charity: Charity) {
+  try {
+    const name = UserProfile.getUserId();
+    const response = await axios.delete("http://localhost:5002/likes/", {
+      data: {
+        userId: name,
+        charityId: charity.id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const CharityCriteriaList: React.FC = () => {
