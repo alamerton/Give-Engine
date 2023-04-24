@@ -18,10 +18,6 @@ function toTitleCase(str: string) {
   });
 }
 
-// async function getUserIdByEmail(email: string) {
-//   const response = await axios.get()
-// }
-
 async function createLike(charity: Charity) {
   try {
     const name = UserProfile.getUserId();
