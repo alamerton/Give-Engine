@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import UserProfile from "../helper/userProfile";
+import UserProfile from "../helper/UserProfile";
 
 const Banner = () => {
   return (

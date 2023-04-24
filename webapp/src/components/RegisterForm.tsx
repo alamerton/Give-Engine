@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import UserProfile from "../helper/UserProfile";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
