@@ -1,6 +1,6 @@
 import { Box, CssBaseline } from "@mui/material";
 import NavBar from "./components/NavBar";
-import Banner from "./components/Banner";
+import Banner from "./components/CharityListBanner";
 import CharityList from "./components/CharityList";
 import Landing from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

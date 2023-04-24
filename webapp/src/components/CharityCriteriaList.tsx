@@ -1,18 +1,11 @@
 import {
   Box,
-  Button,
   Card,
-  Link,
   List,
-  ListItem,
-  ListItemText,
   Typography,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
