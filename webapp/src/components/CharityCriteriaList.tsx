@@ -21,6 +21,7 @@ interface ICharity {
   id: number;
   name: string;
   url: string;
+  isLiked: boolean;
 }
 
 function toTitleCase(str: string) {
@@ -31,8 +32,7 @@ function toTitleCase(str: string) {
 
 const CharityCriteriaList: React.FC = () => {
   const [charities, setCharities] = useState<ICharity[]>([]);
-  const [isActive, setIsActive] = useState(false);
-  const [isActive2, setIsActive2] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const getCharities = async () => {
@@ -40,6 +40,9 @@ const CharityCriteriaList: React.FC = () => {
         "http://localhost:5000/charities" // this would be a different list of charities curated to gain insight on preference
       );
       setCharities(response.data.charities);
+      for (let charity in charities) {
+        charities[charity].isLiked = false;
+      }
     };
     getCharities();
   }, []);
@@ -69,16 +72,6 @@ const CharityCriteriaList: React.FC = () => {
           >
             <Box>
               <Typography variant="h5">{toTitleCase(charity.name)}</Typography>
-              {/* Icon row goes here, number of grey icons depends on rating
-                create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
-              {/* Logic like 'if charity has rating...' to do the star system. For now the stars are just there for show */}
-              {/* <Box sx={{ margin: "auto", display: "flex" }}>
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarBorderIcon sx={{ color: "green" }} />
-              </Box> */}
             </Box>
             <Box
               sx={{
@@ -87,11 +80,12 @@ const CharityCriteriaList: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              {isActive ? (
+              {charity.isLiked ? (
                 <FavoriteBorderIcon
                   sx={{ color: "gold" }}
                   onClick={() => {
-                    setIsActive(!isActive);
+                    setIsLiked(!isLiked);
+                    charity.isLiked = false;
                     // create like
                   }}
                 />
@@ -99,7 +93,9 @@ const CharityCriteriaList: React.FC = () => {
                 <FavoriteIcon
                   sx={{ color: "gold" }}
                   onClick={() => {
-                    setIsActive(!isActive);
+                    setIsLiked(!isLiked);
+                    charity.isLiked = true;
+
                     // remove like
                   }}
                 />
