@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CharityFlexList from "../components/CharityCriteriaList";
 
 export default function Criteria() {
@@ -10,6 +10,26 @@ export default function Criteria() {
         </Typography>
       </Box>
       <CharityFlexList />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "2rem",
+        }}
+      >
+        <Button
+          variant="contained"
+          sx={{
+            width: "12rem",
+            height: "4rem",
+            fontSize: "1.5rem",
+            textTransform: "none",
+          }}
+          // onClick={}
+        >
+          Finish
+        </Button>
+      </Box>
     </Box>
   );
 }
