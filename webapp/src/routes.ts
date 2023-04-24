@@ -33,4 +33,11 @@ export const routes: Array<Route> = [
     enabled: true,
     component: Register,
   },
+  {
+    key: "criteria-selection-route",
+    title: "Criteria Selection",
+    path: "/criteria",
+    enabled: true,
+    component: Register,
+  },
 ];

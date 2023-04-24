@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import UserProfile from "../helper/UserProfile";
 
 export default function SignInForm() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function SignInForm() {
           console.log(error.message);
         }
       });
+    UserProfile.setName(email);
     navigate("/");
   }
 

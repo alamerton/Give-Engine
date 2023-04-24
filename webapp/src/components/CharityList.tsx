@@ -31,13 +31,13 @@ const CharityList: React.FC = () => {
   const [charities, setCharities] = useState<ICharity[]>([]);
 
   useEffect(() => {
-    const fetchCharities = async () => {
+    const getCharities = async () => {
       const response = await axios.get<{ charities: ICharity[] }>(
         "http://localhost:5000/charities"
       );
       setCharities(response.data.charities);
     };
-    fetchCharities();
+    getCharities();
   }, []);
 
   return (
@@ -52,7 +52,7 @@ const CharityList: React.FC = () => {
         {charities.map((charity) => (
           <Card
             sx={{
-              padding: "2rem",
+              padding: "2rem",  
               margin: "1rem",
               display: "flex",
             }}
@@ -62,13 +62,13 @@ const CharityList: React.FC = () => {
               {/* Icon row goes here, number of grey icons depends on rating
               create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
               {/* Logic like 'if charity has rating...' to do the star system. For now the stars are just there for show */}
-              {/* <Box sx={{ margin: "auto", display: "flex" }}>
+              <Box sx={{ margin: "auto", display: "flex" }}>
                 <StarIcon sx={{ color: "green" }} />
                 <StarIcon sx={{ color: "green" }} />
                 <StarIcon sx={{ color: "green" }} />
                 <StarIcon sx={{ color: "green" }} />
                 <StarBorderIcon sx={{ color: "green" }} />
-              </Box> */}
+              </Box>
             </Box>
             <Box
               sx={{
