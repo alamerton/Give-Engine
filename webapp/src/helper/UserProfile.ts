@@ -1,20 +1,28 @@
-const UserProfile = (function() {
-    var full_name = "";
-  
-    var getName = function() {
-      return full_name;    // Or pull this from cookie/localStorage
-    };
-  
-    var setName = function(name: string) {
-      full_name = name;     
-      // Also set this in cookie/localStorage
-    };
-  
-    return {
-      getName: getName,
-      setName: setName
-    }
-  
-  })();
-  
-  export default UserProfile;
+const UserProfile = (function () {
+  let userId = "";
+  let email = "";
+
+  let getUserId = function () {
+    return userId;
+  };
+
+  let setUserId = function (userId: string) {
+    userId = userId;
+  };
+  let getEmail = function () {
+    return email;
+  };
+
+  let setEmail = function (email: string) {
+    email = email;
+  };
+
+  return {
+    getUserId: getUserId,
+    setUserId: setUserId,
+    getEmail: getEmail,
+    setEmail: setEmail,
+  };
+})();
+
+export default UserProfile;

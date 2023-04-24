@@ -27,7 +27,7 @@ export default function SignInForm() {
           console.log(error.message);
         }
       });
-    UserProfile.setName(email);
+    UserProfile.setEmail(email);
     navigate("/");
   }
 

@@ -1,21 +1,16 @@
-import {
-  Box,
-  Card,
-  List,
-  Typography,
-} from "@mui/material";
+import { Box, Card, List, Typography } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
+import UserProfile from "../helper/UserProfile";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-interface ICharity {
+type Charity = {
   id: number;
   name: string;
   url: string;
   isLiked: boolean;
-}
+};
 
 function toTitleCase(str: string) {
   return str.replace(/\w\S*/g, function (txt) {
@@ -23,13 +18,33 @@ function toTitleCase(str: string) {
   });
 }
 
+// async function getUserIdByEmail(email: string) {
+//   const response = await axios.get()
+// }
+
+async function createLike(charity: Charity) {
+  try {
+    const name = UserProfile.getUserId();
+    const response = await axios.post("http://localhost:5002/likes/", {
+      userId: name,
+      charityId: charity.id,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function removeLike(charity: Charity) {
+  
+}
+
 const CharityCriteriaList: React.FC = () => {
-  const [charities, setCharities] = useState<ICharity[]>([]);
+  const [charities, setCharities] = useState<Charity[]>([]);
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const getCharities = async () => {
-      const response = await axios.get<{ charities: ICharity[] }>(
+      const response = await axios.get<{ charities: Charity[] }>(
         "http://localhost:5000/charities" // this would be a different list of charities curated to gain insight on preference
       );
       setCharities(response.data.charities);
@@ -79,7 +94,7 @@ const CharityCriteriaList: React.FC = () => {
                   onClick={() => {
                     setIsLiked(!isLiked);
                     charity.isLiked = false;
-                    // create like
+                    removeLike(charity);
                   }}
                 />
               ) : (
@@ -88,7 +103,7 @@ const CharityCriteriaList: React.FC = () => {
                   onClick={() => {
                     setIsLiked(!isLiked);
                     charity.isLiked = true;
-                    // remove like
+                    createLike(charity);
                   }}
                 />
               )}

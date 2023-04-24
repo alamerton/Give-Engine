@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserProfile from "../helper/UserProfile";
+import { response } from "express";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function RegisterForm() {
     password: string,
     confirmPassword: string
   ) {
-    await axios
+    const response = await axios
       .post("http://localhost:5001/users/create", {
         email: email,
         password: password,
@@ -32,7 +33,12 @@ export default function RegisterForm() {
           console.log(error.message);
         }
       });
-    UserProfile.setName(email);
+    if (response) {
+      UserProfile.setUserId(response.data);
+    } else {
+      UserProfile.setUserId("No user ID");
+    }
+    UserProfile.setEmail(email);
     navigate("/criteria");
   }
 
