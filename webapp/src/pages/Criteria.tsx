@@ -1,11 +1,14 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CharityFlexList from "../components/CharityCriteriaList";
-import CriteriaSelectionBanner from "../components/CriteriaSelectionBanner";
 
 export default function Criteria() {
   return (
     <Box sx={{ background: "whitesmoke" }}>
-      <CriteriaSelectionBanner />
+      <Box sx={{ padding: "2rem", margin: "auto", width: "80%" }}>
+        <Typography variant="h4">
+          Please select three or more charities
+        </Typography>
+      </Box>
       <CharityFlexList />
     </Box>
   );
