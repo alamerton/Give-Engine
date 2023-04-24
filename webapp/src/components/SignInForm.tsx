@@ -8,9 +8,25 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
-  
+  const navigate = useNavigate();
+  async function handleSubmit(email: string, password: string) {
+    await axios
+      .post("http://localhost:5001/users/", {
+        email: email,
+        password: password,
+      })
+      .catch(function (error) {
+        if (error.response.status === 401) {
+          alert("Incorrect password");
+        } else {
+          console.log(error.message);
+        }
+      });
+    navigate("/");
   }
 
   return (
@@ -35,8 +51,8 @@ export default function SignInForm() {
         >
           Sign In
         </Typography>
-        <form onSubmit={
-          async (event: React.SyntheticEvent) => {
+        <form
+          onSubmit={async (event: React.SyntheticEvent) => {
             event.preventDefault();
             const target = event.target as typeof event.target & {
               email: { value: string };
@@ -44,9 +60,9 @@ export default function SignInForm() {
             };
             const email = target.email.value;
             const password = target.password.value;
-            await handleSubmit(email, password, confirmPassword);
-          }
-        }> 
+            await handleSubmit(email, password);
+          }}
+        >
           <Container
             sx={{
               position: "relative",
@@ -60,7 +76,6 @@ export default function SignInForm() {
               id="email"
               type="email"
               placeholder="Email"
-              onChange={onChange}
               required
             />
             <TextField
@@ -69,7 +84,6 @@ export default function SignInForm() {
               id="password"
               type="password"
               placeholder="Password"
-              onChange={onChange}
               required
             />
             <Button
