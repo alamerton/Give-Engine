@@ -81,7 +81,7 @@ const CharityCriteriaList: React.FC = () => {
               }}
             >
               {charity.isLiked ? (
-                <FavoriteBorderIcon
+                <FavoriteIcon
                   sx={{ color: "gold" }}
                   onClick={() => {
                     setIsLiked(!isLiked);
@@ -90,12 +90,11 @@ const CharityCriteriaList: React.FC = () => {
                   }}
                 />
               ) : (
-                <FavoriteIcon
+                <FavoriteBorderIcon
                   sx={{ color: "gold" }}
                   onClick={() => {
                     setIsLiked(!isLiked);
                     charity.isLiked = true;
-
                     // remove like
                   }}
                 />
