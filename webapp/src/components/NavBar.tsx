@@ -8,14 +8,14 @@ const CornerButton: React.FC = () => {
   const isLoggedIn = sessionStorage.getItem("id") ? true : false;
   if (isLoggedIn) {
     return (
-      <Button color="inherit" href="/signin">
-        Login
+      <Button color="inherit" href="/profile">
+        Profile
       </Button>
     );
   } else {
     return (
-      <Button color="inherit" href="/profile">
-        Profile
+      <Button color="inherit" href="/signin">
+        Login
       </Button>
     );
   }

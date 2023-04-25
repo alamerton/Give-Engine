@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 export default function SignInForm() {
   const navigate = useNavigate();
   async function handleSubmit(email: string, password: string) {
-    await axios // TODO: may have to return id from here
+    const response = await axios
       .post("http://localhost:5001/users/", {
         email: email,
         password: password,
@@ -22,11 +22,16 @@ export default function SignInForm() {
       .catch(function (error) {
         if (error.response.status === 401) {
           alert("Incorrect password");
-          // add error here: if user does not exist don't let them go to the next page
+          // test here to see if a user with an unrecognised email can log in
         } else {
           console.log(error.message);
         }
       });
+    try {
+      sessionStorage.setItem("userId", response?.data.id);
+    } catch (error) {
+      console.log(error);
+    }
     sessionStorage.setItem("email", email);
     navigate("/");
   }
