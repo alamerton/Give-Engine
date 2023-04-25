@@ -14,7 +14,7 @@ const CornerButton: React.FC = () => {
     );
   } else {
     return (
-      <Button color="inherit" href="/signin">
+      <Button color="inherit" href="/profile">
         Profile
       </Button>
     );
