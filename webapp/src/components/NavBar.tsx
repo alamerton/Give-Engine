@@ -5,8 +5,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 const CornerButton: React.FC = () => {
-  const isLoggedIn = sessionStorage.getItem("id") ? true : false;
-  if (isLoggedIn) {
+  const loggedIn = sessionStorage.getItem("id") ? true : false;
+  if (loggedIn) {
     return (
       <Button color="inherit" href="/profile">
         Profile
