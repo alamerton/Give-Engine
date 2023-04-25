@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 export default function SignInForm() {
   const navigate = useNavigate();
   async function handleSubmit(email: string, password: string) {
-    await axios // TODO: may have to return id from here 
+    await axios // TODO: may have to return id from here
       .post("http://localhost:5001/users/", {
         email: email,
         password: password,
@@ -22,11 +22,12 @@ export default function SignInForm() {
       .catch(function (error) {
         if (error.response.status === 401) {
           alert("Incorrect password");
+          // add error here: if user does not exist don't let them go to the next page
         } else {
           console.log(error.message);
         }
       });
-    sessionStorage.setItem("email", email)
+    sessionStorage.setItem("email", email);
     navigate("/");
   }
 
