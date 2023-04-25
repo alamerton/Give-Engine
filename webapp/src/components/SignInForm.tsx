@@ -14,26 +14,23 @@ import { useNavigate } from "react-router-dom";
 export default function SignInForm() {
   const navigate = useNavigate();
   async function handleSubmit(email: string, password: string) {
-    const response = await axios
-      .post("http://localhost:5001/users/", {
+    await axios
+      .post("http://localhost:5001/users/signin", {
         email: email,
         password: password,
+      })
+      .then(function (response) {
+        sessionStorage.setItem("userId", response?.data.id);
+        sessionStorage.setItem("email", email);
+        navigate("/"); // TODO: it navigates even when login attempt is unsuccessful. How can I make it skip this step if it doesn't work?
       })
       .catch(function (error) {
         if (error.response.status === 401) {
           alert("Incorrect password");
-          // test here to see if a user with an unrecognised email can log in
         } else {
-          console.log(error.message);
+          alert("Error: " + error.response.statusText);
         }
       });
-    try {
-      sessionStorage.setItem("userId", response?.data.id);
-    } catch (error) {
-      console.log(error);
-    }
-    sessionStorage.setItem("email", email);
-    navigate("/");
   }
 
   return (

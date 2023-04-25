@@ -3,18 +3,30 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
 
 const CornerButton: React.FC = () => {
-  const loggedIn = sessionStorage.getItem("id") ? true : false;
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    const handleStorageChange = () => {
+      console.log("Session storage changed:", sessionStorage.getItem("id"));
+      setLoggedIn(!!sessionStorage.getItem("id"));
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+  const buttonKey = loggedIn ? "profile" : "signin";
   if (loggedIn) {
     return (
-      <Button color="inherit" href="/profile">
+      <Button key={buttonKey} color="inherit" href="/profile">
         Profile
       </Button>
     );
   } else {
     return (
-      <Button color="inherit" href="/signin">
+      <Button key={buttonKey} color="inherit" href="/signin">
         Login
       </Button>
     );
