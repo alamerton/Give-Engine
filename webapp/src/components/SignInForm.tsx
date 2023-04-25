@@ -22,7 +22,7 @@ export default function SignInForm() {
       .then(function (response) {
         sessionStorage.setItem("userId", response?.data.id);
         sessionStorage.setItem("email", email);
-        navigate("/"); // TODO: it navigates even when login attempt is unsuccessful. How can I make it skip this step if it doesn't work?
+        navigate("/");
       })
       .catch(function (error) {
         if (error.response.status === 401) {
