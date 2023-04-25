@@ -1,7 +1,6 @@
 import { Box, Card, List, Typography } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import UserProfile from "../helper/UserProfile";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -20,9 +19,9 @@ function toTitleCase(str: string) {
 
 async function createLike(charity: Charity) {
   try {
-    const name = UserProfile.getUserId();
-    const response = await axios.post("http://localhost:5002/likes/", {
-      userId: name,
+    const userId = sessionStorage.getItem("userId");
+    await axios.post("http://localhost:5002/likes/", {
+      userId: userId,
       charityId: charity.id,
     });
   } catch (error) {
@@ -32,10 +31,10 @@ async function createLike(charity: Charity) {
 
 async function removeLike(charity: Charity) {
   try {
-    const name = UserProfile.getUserId();
-    const response = await axios.delete("http://localhost:5002/likes/", {
+    const userId = sessionStorage.getItem("userId");
+    await axios.delete("http://localhost:5002/likes/", {
       data: {
-        userId: name,
+        userId: userId,
         charityId: charity.id,
       },
     });

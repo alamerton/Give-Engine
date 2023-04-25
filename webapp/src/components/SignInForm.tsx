@@ -10,12 +10,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import UserProfile from "../helper/UserProfile";
 
 export default function SignInForm() {
   const navigate = useNavigate();
   async function handleSubmit(email: string, password: string) {
-    await axios
+    await axios // TODO: may have to return id from here 
       .post("http://localhost:5001/users/", {
         email: email,
         password: password,
@@ -27,7 +26,7 @@ export default function SignInForm() {
           console.log(error.message);
         }
       });
-    UserProfile.setEmail(email);
+    sessionStorage.setItem("email", email)
     navigate("/");
   }
 

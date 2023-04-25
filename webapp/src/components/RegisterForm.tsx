@@ -10,8 +10,6 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import UserProfile from "../helper/UserProfile";
-import { response } from "express";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -33,12 +31,12 @@ export default function RegisterForm() {
           console.log(error.message);
         }
       });
-    if (response) {
-      UserProfile.setUserId(response.data);
-    } else {
-      UserProfile.setUserId("No user ID");
+    try {
+      sessionStorage.setItem("userId", response?.data.id)
+    } catch (error) {
+      console.log(error);
     }
-    UserProfile.setEmail(email);
+    sessionStorage.setItem("email", email)
     navigate("/criteria");
   }
 
