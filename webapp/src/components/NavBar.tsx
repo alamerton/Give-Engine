@@ -6,16 +6,13 @@ import Typography from "@mui/material/Typography";
 
 const CornerButton: React.FC = () => {
   const loggedIn = !!sessionStorage.getItem("userId");
-
   if (loggedIn) {
-    console.log("Logged in is true, returning profile button");
     return (
       <Button key="profile" color="inherit" href="/profile">
         Profile
       </Button>
     );
   } else {
-    console.log("Logged in is false, button remaining the same");
     return (
       <Button key="login" color="inherit" href="/signin">
         Login
