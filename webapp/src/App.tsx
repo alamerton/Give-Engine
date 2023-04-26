@@ -8,7 +8,6 @@ function App() {
     <Box sx={{ background: "whitesmoke", height: "100vh" }}>
       <Router>
         <CssBaseline />
-        <NavBar />
         <Routes>
           {appRoutes.map((route) => (
             <Route

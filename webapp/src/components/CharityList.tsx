@@ -50,6 +50,7 @@ const CharityList: React.FC = () => {
       <List>
         {charities.map((charity) => (
           <Card
+            key={charity.id}
             sx={{
               padding: "2rem",
               margin: "1rem",
