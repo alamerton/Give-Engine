@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import CharityList from "../components/CharityList";
+import CharityList from "../components/MainList";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
