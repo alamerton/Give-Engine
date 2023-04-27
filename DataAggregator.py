@@ -1,10 +1,10 @@
-
-# use charity URL to access webpage and turn the HTML into a document of terms
 import pandas as pd
 from bs4 import BeautifulSoup
 import urllib
 import urllib.request
 from urllib.request import Request
+
+# use charity URL to access its webpage and turn the HTML into a document of terms, handling errors
 
 
 def getContentFromURL(url):
@@ -46,9 +46,9 @@ def returnCharityListWithDocuments(df):
         charityName = df['Name'][i]
         # if url field is not null!
         # get and save page as document
-        # if df['Website'][i] != None: # Code to same effect not using pandas library isnull, not sure which is best
+        #       if df['Website'][i] != None: # Code to same effect not using pandas library isnull, not sure which is best
         if pd.isnull(df.loc[i, 'Website']):
-            charityTermDocument = ''
+            charityTermDocument = '' # Unfortunately, many website sections of CharityBase's data are empty
         else:
             charityTermDocument = getContentFromURL(df['Website'][i])
         # create list containing the id, name and document
@@ -59,15 +59,17 @@ def returnCharityListWithDocuments(df):
     return newCharityDataStructure
 
 
-def createDocumentDataStructure(charityData):
+# save data from a charity list to a new dataframe
+
+def saveCharityContent(charityData):
     charityTermArray = returnCharityListWithDocuments(charityData)
     # turn 2d array of charity ids, names and term documents into a new DataFrame
     dataFrame2 = pd.DataFrame(charityTermArray, columns=[
                               'id', 'name', 'document'])
     # save the DataFrame as a csv file
-    csvOfNewDataFrame = dataFrame2.to_csv('dataFrameWithDocuments.csv')
+    dataFrame2.to_csv('dataFrameWithDocuments.csv')
 
 
 charities = pd.read_csv('names_urls3.csv')
 
-createDocumentDataStructure()
+saveCharityContent(charities)
