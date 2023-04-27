@@ -82,8 +82,9 @@ countVector = CountVectorizer(stop_words='english')
 
 # transform matrix into a document-term matrix
 
-count_matrix = countVector.fit_transform(dataFrame['document'])
-# count_matrix = countVector.TfIdfTransformer
+# count_matrix = countVector.fit_transform(dataFrame['document'])
+count_matrix = countVector.fit_transform(
+    dataFrame['document'].values.astype('U'))
 
 # Following tutorial code
 cosSim2 = cosine_similarity(count_matrix, count_matrix)
