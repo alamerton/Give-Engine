@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import CharityFlexList from "../components/CriteriaList";
+import CriteriaList from "../components/CriteriaList";
 import FinishButton from "../components/FinishButton";
 import NavBar from "../components/NavBar";
 
@@ -12,7 +12,7 @@ export default function Criteria() {
           Please select three or more charities
         </Typography>
       </Box>
-      <CharityFlexList />
+      <CriteriaList />
       <FinishButton />
     </Box>
   );
