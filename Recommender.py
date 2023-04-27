@@ -9,6 +9,11 @@ from urllib.request import Request, urlopen
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import time
+import flask
+from flask import Response, request
+
+# flask --app Recommender run
+app = flask.Flask(__name__)
 
 # open charity information dataframe
 dataFrame2 = pd.read_csv('./dataFrameWithDocuments.csv')
@@ -20,7 +25,7 @@ countVector = CountVectorizer(stop_words='english')
 count_matrix = countVector.fit_transform(
     dataFrame2['document'].values.astype('U'))
 
-# Following tutorial code
+# add comments here
 cosSim2 = cosine_similarity(count_matrix, count_matrix)
 
 dataFrame2 = dataFrame2.reset_index()
@@ -46,4 +51,11 @@ def get_recommendations(name):
     return return_dataFrame
 
 
-get_recommendations('PROCEEDS OF SALE OF THE FORMER FREE LIBRARY')
+@app.route("/", methods=['POST'])
+def apiResponse():
+    charityName = request.form.get['charityName']
+    recommendedCharities = get_recommendations(charityName)
+    return Response({recommendedCharities}, status=201, mimetype='application/json')
+
+# TODO: @here struggling to get the list to return when making a post request in insomnia, getting 'The browser (or proxy) sent a request that this server could not understand.'
+# continue search here: https://stackoverflow.com/questions/48780324/flask-bad-request-the-browser-or-proxy-sent-a-request-that-this-server-could
