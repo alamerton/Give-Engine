@@ -55,6 +55,5 @@ def get_recommendations(name):
 def apiResponse():
     charityName = request.get_json()['charityName']
     recommendedCharities = get_recommendations(charityName)
-    # populate a JSON object with the recommended charities
     responseObject = recommendedCharities.to_json()
-    return Response(responseObject, status=201, mimetype='application/json')
+    return Response(responseObject, status=200, mimetype='application/json')
