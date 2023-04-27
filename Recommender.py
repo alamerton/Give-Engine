@@ -57,3 +57,7 @@ def apiResponse():
     recommendedCharities = get_recommendations(charityName)
     responseObject = recommendedCharities.to_json()
     return Response(responseObject, status=200, mimetype='application/json')
+
+
+if __name__ == '__main__':
+    app.run(debug=False, port=8001)
