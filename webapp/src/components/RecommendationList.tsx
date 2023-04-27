@@ -16,11 +16,46 @@ const RecommendationList: React.FC = () => {
 
   useEffect(() => {
     const getCharities = async () => {
-      const response = await axios.get<{ charities: ICharity[] }>(
-        "http://localhost:5000/charities" // calls flask api
-      );
+      // call likes api to get most significant charity (this is the best I can do)
+      // TODO: make into a method
+      // gets a liked charity by the user id
+      const request1 = {
+        userId: sessionStorage.getItem("userId"),
+      };
+      const response1 = await axios
+        // const like = await axios
+        .post("http://localhost:5002/likes/getLikeByUserId/", request1)
+        .catch(function (error) {
+          alert("Error: " + error.response.statusText);
+        });
+
+      // get charity name by id
+      // make a call to the charity api to get a charity's name
+      const response2 = await axios
+        // .post("charity endpoint", like)
+        .post("http://localhost:5000/charities/", response1)
+        .catch(function (error) {
+          alert("Error: " + error.response.statusText);
+        });
+      const charity: ICharity = { // TODO: refactor
+        id: response2?.data.id,
+        name: response2?.data.name,
+        url: response2?.data.url
+      }
+      // call recommender api to get recommendations using that charity as the key
+      // TODO: make into a method
+      // const response = await axios.post<{ charities: ICharity[] }>(
+      const request3 = {
+        charityName: charity.name,
+      };
+      const response = await axios.post("http://127.0.0.1:8001/", request3);
+
+      console.log(response.data);
       setCharities(response.data.charities);
     };
+    // call charity api to get charity information recommended charities?
+
+    // use names to call database and get charity objects?
     getCharities();
   }, []);
 
