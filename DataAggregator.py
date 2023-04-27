@@ -1,5 +1,10 @@
 
 # use charity URL to access webpage and turn the HTML into a document of terms
+import pandas as pd
+from bs4 import BeautifulSoup
+import urllib
+import urllib.request
+from urllib.request import Request
 
 
 def getContentFromURL(url):
@@ -55,11 +60,14 @@ def returnCharityListWithDocuments(df):
 
 
 def createDocumentDataStructure(charityData):
-    charityTermArray = returnCharityListWithDocuments(dataFrame)
+    charityTermArray = returnCharityListWithDocuments(charityData)
     # turn 2d array of charity ids, names and term documents into a new DataFrame
     dataFrame2 = pd.DataFrame(charityTermArray, columns=[
                               'id', 'name', 'document'])
     # save the DataFrame as a csv file
     csvOfNewDataFrame = dataFrame2.to_csv('dataFrameWithDocuments.csv')
 
-# createDocumentDataStructure(dataFrame)
+
+charities = pd.read_csv('names_urls3.csv')
+
+createDocumentDataStructure()
