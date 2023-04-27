@@ -2,8 +2,11 @@ import { Box, Button, Card, List, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import titleCase from "../helper/TitleCapitalisation";
+import { error, log } from "console";
+import { Like } from "../types/like.type";
+import { useNavigate } from "react-router-dom";
 
 interface ICharity {
   id: number;
@@ -12,13 +15,16 @@ interface ICharity {
 }
 
 const RecommendationList: React.FC = () => {
-  const [charities, setCharities] = useState<ICharity[]>([]);
+  const navigate = useNavigate();
+  const [recommendations, setRecommendations] = useState<ICharity[]>([]);
 
   useEffect(() => {
-    const getCharities = async () => {
+    const getRecommendations = async () => {
       // call likes api to get most significant charity (this is the best I can do)
       // TODO: make into a method
       // gets a liked charity by the user id
+      console.log("Before request 1");
+
       const request1 = {
         userId: sessionStorage.getItem("userId"),
       };
@@ -26,8 +32,20 @@ const RecommendationList: React.FC = () => {
         // const like = await axios
         .post("http://localhost:5002/likes/getLikeByUserId/", request1)
         .catch(function (error) {
-          alert("Error: " + error.response.statusText);
+          console.log("Requested user has no likes");
+          navigate("/criteria");
         });
+
+      if (!!response1) {
+        console.log("UNDEFINED");
+      }
+
+      if (response1?.status === 400) {
+        console.log("User has no likes");
+      }
+      const like: Like = response1?.data;
+
+      console.log("response 1 is:", like);
 
       // get charity name by id
       // make a call to the charity api to get a charity's name
@@ -35,28 +53,34 @@ const RecommendationList: React.FC = () => {
         // .post("charity endpoint", like)
         .post("http://localhost:5000/charities/", response1)
         .catch(function (error) {
-          alert("Error: " + error.response.statusText);
+          console.log("Error: " + error.response.statusText);
         });
-      const charity: ICharity = { // TODO: refactor
+      console.log("response 2: ", response2);
+
+      const charity: ICharity = {
+        // TODO: refactor
         id: response2?.data.id,
         name: response2?.data.name,
-        url: response2?.data.url
-      }
+        url: response2?.data.url,
+      };
       // call recommender api to get recommendations using that charity as the key
       // TODO: make into a method
       // const response = await axios.post<{ charities: ICharity[] }>(
+
       const request3 = {
         charityName: charity.name,
       };
+      console.log("request 3", request3);
       const response = await axios.post("http://127.0.0.1:8001/", request3);
+      console.log("response 3", response);
 
       console.log(response.data);
-      setCharities(response.data.charities);
+      setRecommendations(response.data.charities);
     };
     // call charity api to get charity information recommended charities?
 
     // use names to call database and get charity objects?
-    getCharities();
+    getRecommendations();
   }, []);
 
   return (
@@ -67,7 +91,7 @@ const RecommendationList: React.FC = () => {
       }}
     >
       <List>
-        {charities.map((charity) => (
+        {recommendations.map((charity) => (
           <Card
             key={charity.id}
             sx={{

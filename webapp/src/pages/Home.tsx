@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import CharityList from "../components/MainList";
+import MainList from "../components/MainList";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
       <Box sx={{ padding: "2rem", margin: "auto", width: "80%" }}>
         <Typography variant="h3">Welcome</Typography>
       </Box>
-      <CharityList />
+      <MainList />
     </Box>
   );
 }
