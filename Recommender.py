@@ -51,16 +51,10 @@ def get_recommendations(name):
     return return_dataFrame
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['POST'])
 def apiResponse():
-    print("hello world")
-    # # charityName = request.form.get('charityName')
-    # charityName = request.get_json()['charityName']
-    # print(request.get_json()['charityName'])
-    # print("getting here")
-    # recommendedCharities = get_recommendations(charityName)
-    # print("and here")
-    # return Response({recommendedCharities}, status=201, mimetype='application/json')
-
-# TODO: @here struggling to get the list to return when making a post request in insomnia, getting 'The browser (or proxy) sent a request that this server could not understand.'
-# continue search here: https://stackoverflow.com/questions/48780324/flask-bad-request-the-browser-or-proxy-sent-a-request-that-this-server-could
+    charityName = request.get_json()['charityName']
+    recommendedCharities = get_recommendations(charityName)
+    # populate a JSON object with the recommended charities
+    responseObject = recommendedCharities.to_json()
+    return Response(responseObject, status=201, mimetype='application/json')
