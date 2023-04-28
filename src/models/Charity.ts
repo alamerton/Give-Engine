@@ -1,4 +1,5 @@
 import connection from "../dbconfig";
+import { Request } from "express";
 
 class Charity {
   id: string;
@@ -23,6 +24,16 @@ class Charity {
         callback(null, charities);
       }
     });
+  }
+  static getCharity(
+    request: any,
+    callback: (error: Error | null, charity?: Charity) => void
+  ) {
+    const requestAsJSON = JSON.parse(request);
+    console.log(requestAsJSON);
+
+    // console.log requestAsJSON here to double check what it is. Since I'm passing an id directly by url it should just be the id on its own
+    connection.query(`SELECT * FROM charities WHERE id=${requestAsJSON}`);
   }
 }
 export default Charity;
