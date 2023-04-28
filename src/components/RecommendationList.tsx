@@ -43,7 +43,7 @@ const RecommendationList: React.FC = () => {
       // make a call to the charity api to get a charity's name
       const response2 = await axios
         // .post("charity endpoint", like)
-        .post("http://localhost:5000/charities/", charityId) // this can be a get request that sends the charityId through the url
+        .get(`http://localhost:5000/getCharity/${charityId}`) // this can be a get request that sends the charityId through the url
         .catch(function (error) {
           console.log("Error: " + error.response.statusText);
         });
