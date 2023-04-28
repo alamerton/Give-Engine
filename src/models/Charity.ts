@@ -1,6 +1,8 @@
 import connection from "../dbconfig";
 import { Request } from "express";
 
+const charityDatabase = "names_urls2";
+
 class Charity {
   id: string;
   name: string;
@@ -14,7 +16,8 @@ class Charity {
   static getAll(
     callback: (error: Error | null, charities?: Charity[]) => void
   ) {
-    connection.query("SELECT * FROM charities", (error, results) => {
+    // connection.query("SELECT * FROM charities", (error, results) => {
+    connection.query(`SELECT * FROM ${charityDatabase}`, (error, results) => {
       if (error) {
         callback(error);
       } else {
@@ -31,7 +34,8 @@ class Charity {
   ) {
     console.log("This is the charity id getting queried: ", charityId);
     connection.query(
-      `SELECT * FROM charities WHERE id=${charityId}`,
+      // `SELECT * FROM charities WHERE id=${charityId}`,
+      `SELECT * FROM ${charityDatabase} WHERE id=${charityId}`,
       (error, results) => {
         if (error) {
           callback(error);

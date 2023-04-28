@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbconfig_1 = __importDefault(require("../dbconfig"));
+const charityDatabase = "names_urls2";
 class Charity {
     constructor(id, name, url) {
         this.id = id;
@@ -11,7 +12,8 @@ class Charity {
         this.url = url;
     }
     static getAll(callback) {
-        dbconfig_1.default.query("SELECT * FROM charities", (error, results) => {
+        // connection.query("SELECT * FROM charities", (error, results) => {
+        dbconfig_1.default.query(`SELECT * FROM ${charityDatabase}`, (error, results) => {
             if (error) {
                 callback(error);
             }
@@ -23,13 +25,13 @@ class Charity {
     }
     static getCharity(charityId, callback) {
         console.log("This is the charity id getting queried: ", charityId);
-        dbconfig_1.default.query(`SELECT * FROM charities WHERE id=${charityId}`, (error, results) => {
+        dbconfig_1.default.query(
+        // `SELECT * FROM charities WHERE id=${charityId}`,
+        `SELECT * FROM ${charityDatabase} WHERE id=${charityId}`, (error, results) => {
             if (error) {
                 callback(error);
             }
             else if (results[0]) {
-                // the problem is happening in this clause, could be results.
-                //Yes, there's no handling for when results is nothing because there is nothing by the ID passed!
                 const charity = {
                     id: results[0].id,
                     name: results[0].name,
