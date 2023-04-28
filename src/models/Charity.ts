@@ -1,12 +1,11 @@
 import connection from "../dbconfig";
-import { Request } from "express";
 
-const charityDatabase = "names_urls2";
+const charityDatabase = "charities";
 
 class Charity {
   id: string;
   name: string;
-  url: string;
+  url: string | null | undefined;
 
   constructor(id: string, name: string, url: string) {
     this.id = id;
@@ -41,6 +40,7 @@ class Charity {
           callback(error);
         } else if (results[0]) {
           const charity: Charity = {
+            // what happens if a url is missing? One thing I could do is remove all charities with missing urls from table
             id: results[0].id,
             name: results[0].name,
             url: results[0].url,

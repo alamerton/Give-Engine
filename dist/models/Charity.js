@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbconfig_1 = __importDefault(require("../dbconfig"));
-const charityDatabase = "names_urls2";
+const charityDatabase = "charities";
 class Charity {
     constructor(id, name, url) {
         this.id = id;
