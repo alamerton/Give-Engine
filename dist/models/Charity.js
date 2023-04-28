@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbconfig_1 = __importDefault(require("../dbconfig"));
-const charityDatabase = "charities";
 class Charity {
     constructor(id, name, url) {
         this.id = id;
@@ -12,7 +11,7 @@ class Charity {
         this.url = url;
     }
     static getAll(callback) {
-        dbconfig_1.default.query(`SELECT * FROM ${charityDatabase}`, (error, results) => {
+        dbconfig_1.default.query(`SELECT * FROM charities`, (error, results) => {
             if (error) {
                 callback(error);
             }
@@ -23,7 +22,7 @@ class Charity {
         });
     }
     static getCharity(charityId, callback) {
-        dbconfig_1.default.query(`SELECT * FROM ${charityDatabase} WHERE id=${charityId}`, (error, results) => {
+        dbconfig_1.default.query(`SELECT * FROM charities WHERE id=${charityId}`, (error, results) => {
             if (error) {
                 callback(error);
             }
