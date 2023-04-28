@@ -36,38 +36,46 @@ const RecommendationList: React.FC = () => {
           navigate("/criteria");
         });
 
-      const like: Like = response1?.data;
+      const like: Like = response1?.data.like;
+
       const charityId = like.charityId;
 
-      // get charity name by id
-      // make a call to the charity api to get a charity's name
-      const response2 = await axios
-        // .post("charity endpoint", like)
-        .get(`http://localhost:5000/getCharity/${charityId}`) // this can be a get request that sends the charityId through the url
-        .catch(function (error) {
-          console.log("Error: " + error.response.statusText);
-        });
-      console.log("response 2: ", response2);
+      if (!charityId) {
+        console.log("User has no likes, but got through the first handler");
+        navigate("/criteria");
+      } else {
+        console.log("The charityId is ", charityId);
 
-      const charity: ICharity = {
-        // TODO: refactor
-        id: response2?.data.id,
-        name: response2?.data.name,
-        url: response2?.data.url,
-      };
-      // call recommender api to get recommendations using that charity as the key
-      // TODO: make into a method
-      // const response = await axios.post<{ charities: ICharity[] }>(
+        // get charity name by id
+        // make a call to the charity api to get a charity's name
+        const response2 = await axios
+          // .post("charity endpoint", like)
+          .get(`http://localhost:5000/getCharity/${charityId}`) // this can be a get request that sends the charityId through the url
+          .catch(function (error) {
+            console.log("Error: " + error.response.statusText);
+          });
+        console.log("response 2: ", response2);
 
-      const request3 = {
-        charityName: charity.name,
-      };
-      console.log("request 3", request3);
-      const response = await axios.post("http://127.0.0.1:8001/", request3);
-      console.log("response 3", response);
+        const charity: ICharity = {
+          // TODO: refactor
+          id: response2?.data.id,
+          name: response2?.data.name,
+          url: response2?.data.url,
+        };
+        // call recommender api to get recommendations using that charity as the key
+        // TODO: make into a method
+        // const response = await axios.post<{ charities: ICharity[] }>(
 
-      console.log(response.data);
-      setRecommendations(response.data.charities);
+        const request3 = {
+          charityName: charity.name,
+        };
+        console.log("request 3", request3);
+        const response = await axios.post("http://127.0.0.1:8001/", request3);
+        console.log("response 3", response);
+
+        console.log(response.data);
+        setRecommendations(response.data.charities);
+      }
     };
     // call charity api to get charity information recommended charities?
 

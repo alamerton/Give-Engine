@@ -71,6 +71,7 @@ const CriteriaList: React.FC = () => {
       >
         {charities.map((charity) => (
           <Card
+            key={charity.id}
             sx={{
               padding: "2rem",
               margin: "1rem",
