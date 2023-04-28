@@ -8,19 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const Charity_1 = __importDefault(require("../models/Charity"));
 class CharityController {
     static getAll(res) {
         return __awaiter(this, void 0, void 0, function* () {
-            Charity.getAll((error, charities));
-            {
+            Charity_1.default.getAll((error, charities) => {
                 if (error) {
                     res.status(500).json({ error });
                 }
                 else {
-                    res.json({ charities });
+                    res.send({ charities });
                 }
-            }
+            });
         });
     }
 }
+exports.default = CharityController;

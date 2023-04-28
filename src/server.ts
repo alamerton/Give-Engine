@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import charityRoutes from "./routes/charity.routes";
+import charityRoutes from "./routes/charity.route";
 
 const app = express();
 app.use(cors());
