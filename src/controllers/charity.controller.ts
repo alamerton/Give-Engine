@@ -12,7 +12,7 @@ class CharityController {
     });
   }
   static async getCharity(req: Request, res: Response) {
-    const request = JSON.stringify(req.body)
+    const charityId = req.params.id
     Charity.getCharity(request, (error, charity) => {
       if (error) {
         res.status(500).json({ error });

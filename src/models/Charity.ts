@@ -29,7 +29,7 @@ class Charity {
     callback: (error: Error | null, charity?: Charity) => void
   ) {
     // console.log requestAsJSON here to double check what it is. Since I'm passing an id directly by url it should just be the id on its own
-    connection.query(`SELECT * FROM charities WHERE id=${requestAsJSON}`);
+    connection.query(`SELECT * FROM charities WHERE id=${}`);
   }
 }
 export default Charity;
