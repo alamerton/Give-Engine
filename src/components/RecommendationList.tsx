@@ -1,6 +1,7 @@
-import { Box, Button, Card, List, Typography } from "@mui/material";
+import { Box, Button, Card, List, RadioGroup, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarHalfIcon from "@mui/icons-material/StarHalf";
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import titleCase from "../helper/TitleCapitalisation";
@@ -14,16 +15,111 @@ interface ICharity {
   url: string;
 }
 
+const StarRating: React.FC = () => {
+  // this would get a charity's rating from the charities api, but for now its value is generated
+  const rating = Math.round(Math.ceil(Math.random() * 5 * 2)) / 2;
+  console.log(rating);
+  if (rating === 0.5) {
+  } else if (rating === 1) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 1.5) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarHalfIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 2) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 2.5) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarHalfIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 3) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 3.5) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarHalfIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 4) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 4.5) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarHalfIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  } else if (rating === 5) {
+    return (
+      <Box sx={{ margin: "auto", display: "flex" }}>
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+        <StarIcon sx={{ color: "green" }} />
+      </Box>
+    );
+  }
+  return null;
+};
+
 const RecommendationList: React.FC = () => {
   const navigate = useNavigate();
   const [recommendations, setRecommendations] = useState<ICharity[]>([]);
 
   useEffect(() => {
     const getRecommendations = async () => {
-      // call likes api to get most significant charity (this is the best I can do)
-      // This would be made much better by tracking user behaviour more and doing analytics on it
-      // one way this could be made better is by using the longest-lasting like (today's date - dateLiked) and the most recent dateliked
-      // didn't get to add views
       // TODO: make into a method
       // gets a liked charity by the user id
 
@@ -124,16 +220,7 @@ const RecommendationList: React.FC = () => {
           >
             <Box>
               <Typography variant="h5">{titleCase(charity.name)}</Typography>
-              {/* Icon row goes here, number of grey icons depends on rating
-                create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
-              {/* Logic like 'if charity has rating...' to do the star system. For now the stars are just there for show */}
-              <Box sx={{ margin: "auto", display: "flex" }}>
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarBorderIcon sx={{ color: "green" }} />
-              </Box>
+              <StarRating />
             </Box>
             <Box
               sx={{
