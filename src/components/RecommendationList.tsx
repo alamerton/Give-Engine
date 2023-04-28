@@ -36,8 +36,6 @@ const RecommendationList: React.FC = () => {
 
       const charityId = like.charityId;
 
-      console.log("charityId", charityId);
-
       if (!charityId) {
         console.log("User has no likes, but got through the first handler");
         navigate("/criteria");
@@ -75,22 +73,17 @@ const RecommendationList: React.FC = () => {
         for (let i = 0; i < 10; i++) {
           let id = recommendedCharityIDs.data[i];
           const charityObject = await axios.get(`http://localhost:5000/${id}`);
-          // .catch(function (error) {
-          //   console.log("Error: " + error);
-          // });
-          const charityX: ICharity = {
+          const charity: ICharity = {
             id: charityObject?.data.charity.id,
             name: charityObject?.data.charity.name,
             url: charityObject?.data.charity.url,
           };
-          recommendedCharities.push(charityX);
+          recommendedCharities.push(charity);
         }
-        console.log("The recommended charity list: ", recommendedCharities);
 
         // maybe by saving the charities to a list and saving that list to setRecommendations
 
         setRecommendations(recommendedCharities);
-        console.log("Once set looks like this: ", recommendations);
       }
     };
     // call charity api to get charity information recommended charities?

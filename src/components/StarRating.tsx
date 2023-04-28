@@ -6,7 +6,6 @@ import StarHalfIcon from "@mui/icons-material/StarHalf";
 const StarRating: React.FC = () => {
   // this would get a charity's rating from the charities api, but for now its value is generated
   const rating = Math.round(Math.ceil(Math.random() * 5 * 2)) / 2;
-  console.log(rating);
   if (rating === 0.5) {
     return (
       <Box>

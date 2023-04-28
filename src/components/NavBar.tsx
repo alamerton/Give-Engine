@@ -8,7 +8,12 @@ const CornerButton: React.FC = () => {
   const loggedIn = !!sessionStorage.getItem("userId");
   if (loggedIn) {
     return (
-      <Button key="profile" color="inherit" href="/profile">
+      <Button
+        sx={{ textTransform: "none" }}
+        key="profile"
+        color="inherit"
+        href="/profile"
+      >
         Profile
       </Button>
     );

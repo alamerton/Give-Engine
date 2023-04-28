@@ -45,7 +45,7 @@ const CriteriaList: React.FC = () => {
   useEffect(() => {
     const getCharities = async () => {
       const response = await axios.get<{ charities: Charity[] }>(
-        "http://localhost:5000/" // this would be a different list of charities curated to gain insight on preference
+        "http://localhost:5000/"
       );
       setCharities(response.data.charities);
       for (let charity in charities) {
