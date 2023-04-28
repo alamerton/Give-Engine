@@ -20,7 +20,7 @@ export default function FinishButton() {
           textTransform: "none",
         }}
         onClick={() => {
-          navigate("/");
+          navigate("/profile");
         }}
       >
         Finish

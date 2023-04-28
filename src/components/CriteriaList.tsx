@@ -47,7 +47,7 @@ const CriteriaList: React.FC = () => {
       const response = await axios.get<{ charities: Charity[] }>(
         "http://localhost:5000/"
       );
-      setCharities(response.data.charities);
+      setCharities(response.data.charities.slice(0, 9));
       for (let charity in charities) {
         charities[charity].isLiked = false;
       }
@@ -76,7 +76,7 @@ const CriteriaList: React.FC = () => {
               padding: "2rem",
               margin: "1rem",
               display: "flex",
-              minWidth: "30rem",
+              minWidth: "32rem",
             }}
           >
             <Box sx={{ maxWidth: "25rem" }}>
