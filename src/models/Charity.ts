@@ -1,3 +1,5 @@
+import connection from "../dbconfig";
+
 class Charity {
   id: string;
   name: string;
