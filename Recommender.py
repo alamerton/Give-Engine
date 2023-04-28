@@ -1,21 +1,11 @@
-# https://dev.to/dev180memes/deploying-recommender-systems-algorithm-to-a-web-app-1gbo
-# https://github.com/sagarmk/Cosine-similarity-from-scratch-on-webpages
-
 import json
 import pandas as pd
-from bs4 import BeautifulSoup
-import urllib
-import urllib.request
-from urllib.request import Request, urlopen
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import time
 import flask
 from flask import Response, request
 from flask_cors import CORS
 
-
-# flask --app Recommender run
 app = flask.Flask(__name__)
 CORS(app)
 
@@ -28,12 +18,8 @@ countVector = CountVectorizer(stop_words='english')
 count_matrix = countVector.fit_transform(
     dataFrame2['document'].values.astype('U'))
 
-# dataFrame2 = dataFrame2.reset_index()
-
-# indices = pd.Series(dataFrame2.index, index=dataFrame2['name'])
 indices = pd.Series(dataFrame2.index, index=dataFrame2['name'])
 
-# all_names = [dataFrame2['name'][i] for i in range(len(dataFrame2['name']))]
 all_names = [dataFrame2['name'][i] for i in range(len(dataFrame2['name']))]
 
 
@@ -61,5 +47,3 @@ def apiResponse():
 
 if __name__ == '__main__':
     app.run(debug=False, port=8001)
-
-# Run me on the file, not the terminal

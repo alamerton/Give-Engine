@@ -5,6 +5,7 @@ import urllib.request
 from urllib.request import Request
 
 # use charity URL to access its webpage and turn the HTML into a document of terms, handling errors
+# As it can be seen by the number of web issues, the data source is less than optimal
 
 
 def getContentFromURL(url):
@@ -70,6 +71,6 @@ def saveCharityContent(charityData):
     dataFrame2.to_csv('dataFrameWithDocuments.csv')
 
 
-charities = pd.read_csv('names_urls3.csv')
+charities = pd.read_csv('CharityBaseData.csv')
 
 saveCharityContent(charities)
