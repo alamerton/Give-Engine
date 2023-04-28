@@ -32,26 +32,18 @@ const RecommendationList: React.FC = () => {
         // const like = await axios
         .post("http://localhost:5002/likes/getLikeByUserId/", request1)
         .catch(function (error) {
-          console.log("Requested user has no likes");
+          console.log("Requested user has no likes", error.message);
           navigate("/criteria");
         });
 
-      if (!!response1) {
-        console.log("UNDEFINED");
-      }
-
-      if (response1?.status === 400) {
-        console.log("User has no likes");
-      }
       const like: Like = response1?.data;
-
-      console.log("response 1 is:", like);
+      const charityId = like.charityId;
 
       // get charity name by id
       // make a call to the charity api to get a charity's name
       const response2 = await axios
         // .post("charity endpoint", like)
-        .post("http://localhost:5000/charities/", response1)
+        .post("http://localhost:5000/charities/", charityId) // this can be a get request that sends the charityId through the url
         .catch(function (error) {
           console.log("Error: " + error.response.statusText);
         });
