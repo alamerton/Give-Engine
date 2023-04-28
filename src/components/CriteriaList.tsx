@@ -27,7 +27,7 @@ async function createLike(charity: Charity) {
 async function removeLike(charity: Charity) {
   try {
     const userId = sessionStorage.getItem("userId");
-    await axios.delete("http://localhost:5002/likes/", {
+    await axios.delete("http://localhost:5002/", {
       data: {
         userId: userId,
         charityId: charity.id,
@@ -79,8 +79,8 @@ const CriteriaList: React.FC = () => {
               minWidth: "30rem",
             }}
           >
-            <Box>
-              <Typography variant="h5">{titleCase(charity.name)}</Typography>
+            <Box sx={{ maxWidth: "25rem" }}>
+              <Typography variant="h6">{titleCase(charity.name)}</Typography>
             </Box>
             <Box
               sx={{
