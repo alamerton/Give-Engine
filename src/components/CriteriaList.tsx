@@ -15,7 +15,7 @@ type Charity = {
 async function createLike(charity: Charity) {
   try {
     const userId = sessionStorage.getItem("userId");
-    await axios.post("http://localhost:5002/likes/", {
+    await axios.post("http://localhost:5002/", {
       userId: userId,
       charityId: charity.id,
     });

@@ -26,7 +26,7 @@ const RecommendationList: React.FC = () => {
       };
       const response1 = await axios
         // const like = await axios
-        .post("http://localhost:5002/likes/getLikeByUserId/", request1)
+        .post("http://localhost:5002/getLikeByUserId/", request1)
         .catch(function (error) {
           console.log("Requested user has no likes", error.message);
           navigate("/criteria");
