@@ -21,9 +21,11 @@ const RecommendationList: React.FC = () => {
   useEffect(() => {
     const getRecommendations = async () => {
       // call likes api to get most significant charity (this is the best I can do)
+      // This would be made much better by tracking user behaviour more and doing analytics on it
+      // one way this could be made better is by using the longest-lasting like (today's date - dateLiked) and the most recent dateliked
+      // didn't get to add views
       // TODO: make into a method
       // gets a liked charity by the user id
-      console.log("Before request 1");
 
       const request1 = {
         userId: sessionStorage.getItem("userId"),
@@ -40,6 +42,8 @@ const RecommendationList: React.FC = () => {
 
       const charityId = like.charityId;
 
+      console.log("charityId", charityId);
+
       if (!charityId) {
         console.log("User has no likes, but got through the first handler");
         navigate("/criteria");
@@ -50,15 +54,14 @@ const RecommendationList: React.FC = () => {
           // .post("charity endpoint", like)
           .get(`http://localhost:5000/${charityId}`) // this can be a get request that sends the charityId through the url
           .catch(function (error) {
-            console.log("Error: " + error.response.statusText);
+            console.log("Error: " + error);
           });
-        console.log("response 2: ", response2);
 
         const charity: ICharity = {
           // TODO: refactor
-          id: response2?.data.id,
-          name: response2?.data.name,
-          url: response2?.data.url,
+          id: response2?.data.charity.id,
+          name: response2?.data.charity.name,
+          url: response2?.data.charity.url,
         };
         // call recommender api to get recommendations using that charity as the key
         // TODO: make into a method
@@ -67,12 +70,33 @@ const RecommendationList: React.FC = () => {
         const request3 = {
           charityName: charity.name,
         };
-        console.log("request 3", request3);
-        const response = await axios.post("http://127.0.0.1:8001/", request3);
-        console.log("response 3", response);
+        // returns list of ids
+        const recommendedCharityIDs = await axios.post(
+          "http://127.0.0.1:8001/",
+          request3
+        );
 
-        console.log(response.data);
-        setRecommendations(response.data.charities);
+        // get charities by these ids and return a list containing their respective charity objects
+        const recommendedCharities: ICharity[] = [];
+        for (let i = 0; i < 10; i++) {
+          let id = recommendedCharityIDs.data[i];
+          const charityObject = await axios.get(`http://localhost:5000/${id}`);
+          // .catch(function (error) {
+          //   console.log("Error: " + error);
+          // });
+          const charityX: ICharity = {
+            id: charityObject?.data.charity.id,
+            name: charityObject?.data.charity.name,
+            url: charityObject?.data.charity.url,
+          };
+          recommendedCharities.push(charityX);
+        }
+        console.log("The recommended charity list: ", recommendedCharities);
+
+        // maybe by saving the charities to a list and saving that list to setRecommendations
+
+        setRecommendations(recommendedCharities);
+        console.log("Once set looks like this: ", recommendations);
       }
     };
     // call charity api to get charity information recommended charities?
