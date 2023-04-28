@@ -21,5 +21,11 @@ class Charity {
             }
         });
     }
+    static getCharity(request, callback) {
+        const requestAsJSON = JSON.parse(request);
+        console.log(requestAsJSON);
+        // console.log requestAsJSON here to double check what it is. Since I'm passing an id directly by url it should just be the id on its own
+        dbconfig_1.default.query(`SELECT * FROM charities WHERE id=${requestAsJSON}`);
+    }
 }
 exports.default = Charity;

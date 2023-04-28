@@ -18,11 +18,23 @@ class CharityController {
         return __awaiter(this, void 0, void 0, function* () {
             Charity_1.default.getAll((error, charities) => {
                 if (error) {
-                    console.log("This is the error: ", error);
                     res.status(500).json({ error });
                 }
                 else {
                     res.json({ charities });
+                }
+            });
+        });
+    }
+    static getCharity(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const request = JSON.stringify(req.body);
+            Charity_1.default.getCharity(request, (error, charity) => {
+                if (error) {
+                    res.status(500).json({ error });
+                }
+                else {
+                    res.json({ charity });
                 }
             });
         });
