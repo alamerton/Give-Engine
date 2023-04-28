@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Charity_1 = __importDefault(require("../models/Charity"));
 class CharityController {
-    static getAll(res) {
+    static get(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             Charity_1.default.getAll((error, charities) => {
                 if (error) {

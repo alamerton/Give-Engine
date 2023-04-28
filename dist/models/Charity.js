@@ -13,11 +13,11 @@ class Charity {
     static getAll(callback) {
         dbconfig_1.default.query("SELECT * FROM charities", (error, results) => {
             if (error) {
-                callback(error, null);
+                callback(error);
             }
             else {
                 const charities = results.map((result) => new Charity(result.id, result.name, result.url));
-                callback(null, charities);
+                callback(charities);
             }
         });
     }

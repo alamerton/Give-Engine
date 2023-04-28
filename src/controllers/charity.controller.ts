@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import Charity from "../models/Charity";
 
 class CharityController {
-  static async get(req: Request, res: Response) {
+  static async get(res: Response) {
     Charity.getAll((error, charities) => {
       if (error) {
         res.status(500).json({ error });
