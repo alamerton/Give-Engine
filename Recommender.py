@@ -59,6 +59,7 @@ def apiResponse():
     charityName = request.get_json()['charityName']
     recommendedCharities = get_recommendations(charityName)
     responseObject = recommendedCharities.to_json()
+    # response.headers.add('Access-Control-Allow-Origin', '*')
     return Response(responseObject, status=200, mimetype='application/json')
 
 
