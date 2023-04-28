@@ -1,7 +1,5 @@
 import connection from "../dbconfig";
 
-const charityDatabase = "charities";
-
 class Charity {
   id: string;
   name: string;
@@ -15,7 +13,7 @@ class Charity {
   static getAll(
     callback: (error: Error | null, charities?: Charity[]) => void
   ) {
-    connection.query(`SELECT * FROM ${charityDatabase}`, (error, results) => {
+    connection.query(`SELECT * FROM charities`, (error, results) => {
       if (error) {
         callback(error);
       } else {
@@ -31,7 +29,7 @@ class Charity {
     callback: (error: Error | null, charity?: Charity) => void
   ) {
     connection.query(
-      `SELECT * FROM ${charityDatabase} WHERE id=${charityId}`,
+      `SELECT * FROM charities WHERE id=${charityId}`,
       (error, results) => {
         if (error) {
           callback(error);
