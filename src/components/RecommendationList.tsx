@@ -44,13 +44,11 @@ const RecommendationList: React.FC = () => {
         console.log("User has no likes, but got through the first handler");
         navigate("/criteria");
       } else {
-        console.log("The charityId is ", charityId);
-
         // get charity name by id
         // make a call to the charity api to get a charity's name
         const response2 = await axios
           // .post("charity endpoint", like)
-          .get(`http://localhost:5000/getCharity/${charityId}`) // this can be a get request that sends the charityId through the url
+          .get(`http://localhost:5000/${charityId}`) // this can be a get request that sends the charityId through the url
           .catch(function (error) {
             console.log("Error: " + error.response.statusText);
           });
