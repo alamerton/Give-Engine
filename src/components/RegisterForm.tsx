@@ -19,7 +19,7 @@ export default function RegisterForm() {
     confirmPassword: string
   ) {
     const response = await axios
-      .post("http://localhost:5001/users/create", {
+      .post("http://localhost:5001/create", {
         email: email,
         password: password,
         confirmPassword: confirmPassword,
@@ -32,11 +32,11 @@ export default function RegisterForm() {
         }
       });
     try {
-      sessionStorage.setItem("userId", response?.data.id)
+      sessionStorage.setItem("userId", response?.data.id);
     } catch (error) {
       console.log(error);
     }
-    sessionStorage.setItem("email", email)
+    sessionStorage.setItem("email", email);
     navigate("/criteria");
   }
 
