@@ -11,9 +11,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 import time
 import flask
 from flask import Response, request
+from flask_cors import CORS
+
 
 # flask --app Recommender run
 app = flask.Flask(__name__)
+CORS(app)
 
 # open charity information dataframe
 dataFrame2 = pd.read_csv('./dataFrameWithDocuments.csv')
@@ -61,3 +64,5 @@ def apiResponse():
 
 if __name__ == '__main__':
     app.run(debug=False, port=8001)
+
+# Run me on the file, not the terminal
