@@ -11,6 +11,10 @@ const StarRating: React.FC = () => {
     return (
       <Box>
         <StarHalfIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
+        <StarBorderIcon sx={{ color: "green" }} />
       </Box>
     );
   } else if (rating === 1) {
