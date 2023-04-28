@@ -14,6 +14,7 @@ import StarHalfIcon from "@mui/icons-material/StarHalf";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import titleCase from "../helper/TitleCapitalisation";
+import StarRating from "./StarRating";
 
 interface ICharity {
   id: number;
@@ -53,16 +54,7 @@ const MainList: React.FC = () => {
           >
             <Box>
               <Typography variant="h5">{titleCase(charity.name)}</Typography>
-              {/* Icon row goes here, number of grey icons depends on rating
-              create an enumeration for each rating such as: 1 = 1 star 4 star borders, 3.5 = 3 stars 1 starhalf 1 star border */}
-              {/* Logic like 'if charity has rating...' to do the star system. For now the stars are just there for show */}
-              <Box sx={{ margin: "auto", display: "flex" }}>
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarIcon sx={{ color: "green" }} />
-                <StarBorderIcon sx={{ color: "green" }} />
-              </Box>
+              <StarRating />
             </Box>
             <Box
               sx={{
