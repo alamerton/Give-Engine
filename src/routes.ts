@@ -1,6 +1,6 @@
 import Criteria from "./pages/Criteria";
 import Landing from "./pages/Home";
-import Recommended from "./pages/Recommended";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import { FC } from "react";
@@ -43,10 +43,10 @@ export const routes: Array<Route> = [
     component: Criteria,
   },
   {
-    key: "user-recommended-route",
-    title: "Recommended",
-    path: "/recommended",
+    key: "user-profile-route",
+    title: "Profile",
+    path: "/profile",
     enabled: true,
-    component: Recommended,
+    component: Profile,
   },
 ];
