@@ -22,18 +22,24 @@ class Charity {
         });
     }
     static getCharity(charityId, callback) {
-        // console.log requestAsJSON here to double check what it is. Since I'm passing an id directly by url it should just be the id on its own
+        console.log("This is the charity id getting queried: ", charityId);
         dbconfig_1.default.query(`SELECT * FROM charities WHERE id=${charityId}`, (error, results) => {
             if (error) {
                 callback(error);
             }
-            else {
+            else if (results) {
+                // the problem is happening in this clause, could be results.
+                //Yes, there's no handling for when results is nothing because there is nothing by the ID passed!
                 const charity = {
                     id: results[0].id,
                     name: results[0].name,
                     url: results[0].url,
                 };
                 callback(null, charity);
+            }
+            else {
+                const noCharitiesError = new Error("There is no charity by that ID");
+                callback(noCharitiesError);
             }
         });
     }
