@@ -27,7 +27,7 @@ class Charity {
             if (error) {
                 callback(error);
             }
-            else if (!!results) {
+            else if (results[0]) {
                 // the problem is happening in this clause, could be results.
                 //Yes, there's no handling for when results is nothing because there is nothing by the ID passed!
                 const charity = {
