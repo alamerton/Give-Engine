@@ -28,8 +28,8 @@ class CharityController {
     }
     static getCharity(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const request = JSON.stringify(req.body);
-            Charity_1.default.getCharity(request, (error, charity) => {
+            const charityId = req.params.id;
+            Charity_1.default.getCharity(charityId, (error, charity) => {
                 if (error) {
                     res.status(500).json({ error });
                 }
