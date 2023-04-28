@@ -12,7 +12,6 @@ class Charity {
         this.url = url;
     }
     static getAll(callback) {
-        // connection.query("SELECT * FROM charities", (error, results) => {
         dbconfig_1.default.query(`SELECT * FROM ${charityDatabase}`, (error, results) => {
             if (error) {
                 callback(error);
@@ -24,10 +23,7 @@ class Charity {
         });
     }
     static getCharity(charityId, callback) {
-        console.log("This is the charity id getting queried: ", charityId);
-        dbconfig_1.default.query(
-        // `SELECT * FROM charities WHERE id=${charityId}`,
-        `SELECT * FROM ${charityDatabase} WHERE id=${charityId}`, (error, results) => {
+        dbconfig_1.default.query(`SELECT * FROM ${charityDatabase} WHERE id=${charityId}`, (error, results) => {
             if (error) {
                 callback(error);
             }

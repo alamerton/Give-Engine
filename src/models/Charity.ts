@@ -15,7 +15,6 @@ class Charity {
   static getAll(
     callback: (error: Error | null, charities?: Charity[]) => void
   ) {
-    // connection.query("SELECT * FROM charities", (error, results) => {
     connection.query(`SELECT * FROM ${charityDatabase}`, (error, results) => {
       if (error) {
         callback(error);
@@ -31,16 +30,13 @@ class Charity {
     charityId: any,
     callback: (error: Error | null, charity?: Charity) => void
   ) {
-    console.log("This is the charity id getting queried: ", charityId);
     connection.query(
-      // `SELECT * FROM charities WHERE id=${charityId}`,
       `SELECT * FROM ${charityDatabase} WHERE id=${charityId}`,
       (error, results) => {
         if (error) {
           callback(error);
         } else if (results[0]) {
           const charity: Charity = {
-            // what happens if a url is missing? One thing I could do is remove all charities with missing urls from table
             id: results[0].id,
             name: results[0].name,
             url: results[0].url,
