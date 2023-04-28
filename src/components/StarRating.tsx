@@ -8,6 +8,11 @@ const StarRating: React.FC = () => {
   const rating = Math.round(Math.ceil(Math.random() * 5 * 2)) / 2;
   console.log(rating);
   if (rating === 0.5) {
+    return (
+      <Box>
+        <StarHalfIcon sx={{ color: "green" }} />
+      </Box>
+    );
   } else if (rating === 1) {
     return (
       <Box sx={{ margin: "auto", display: "flex" }}>
@@ -102,4 +107,4 @@ const StarRating: React.FC = () => {
   return null;
 };
 
-export default StarRating
+export default StarRating;
