@@ -11,7 +11,7 @@ class Charity {
     this.url = url;
   }
   static getAll(
-    callback: (error: Error, charities?: Charity[] | null) => void
+    callback: (error: Error | null, charities?: Charity[]) => void
   ) {
     connection.query("SELECT * FROM charities", (error, results) => {
       if (error) {
@@ -20,7 +20,7 @@ class Charity {
         const charities = results.map(
           (result: any) => new Charity(result.id, result.name, result.url)
         );
-        callback(charities);
+        callback(null, charities);
       }
     });
   }

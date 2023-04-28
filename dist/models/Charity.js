@@ -17,7 +17,7 @@ class Charity {
             }
             else {
                 const charities = results.map((result) => new Charity(result.id, result.name, result.url));
-                callback(charities);
+                callback(null, charities);
             }
         });
     }
