@@ -26,10 +26,25 @@ class Charity {
     });
   }
   static getCharity(
+    charityId: any,
     callback: (error: Error | null, charity?: Charity) => void
   ) {
     // console.log requestAsJSON here to double check what it is. Since I'm passing an id directly by url it should just be the id on its own
-    connection.query(`SELECT * FROM charities WHERE id=${}`);
+    connection.query(
+      `SELECT * FROM charities WHERE id=${charityId}`,
+      (error, results) => {
+        if (error) {
+          callback(error);
+        } else {
+          const charity: Charity = {
+            id: results[0].id,
+            name: results[0].name,
+            url: results[0].url,
+          };
+          callback(null, charity)
+        }
+      }
+    );
   }
 }
 export default Charity;
