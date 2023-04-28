@@ -2,15 +2,9 @@ import {
   Box,
   Button,
   Card,
-  Link,
   List,
-  ListItem,
-  ListItemText,
   Typography,
 } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import titleCase from "../helper/TitleCapitalisation";

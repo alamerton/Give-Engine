@@ -1,11 +1,7 @@
-import { Box, Button, Card, List, RadioGroup, Typography } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
+import { Box, Button, Card, List, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import titleCase from "../helper/TitleCapitalisation";
-import { error, log } from "console";
 import { Like } from "../types/like.type";
 import { useNavigate } from "react-router-dom";
 import StarRating from "./StarRating";

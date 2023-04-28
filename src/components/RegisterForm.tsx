@@ -62,7 +62,6 @@ export default function RegisterForm() {
         >
           Register
         </Typography>
-        {/* https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events/ */}
         <form
           onSubmit={async (event: React.SyntheticEvent) => {
             event.preventDefault();
