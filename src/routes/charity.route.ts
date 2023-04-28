@@ -3,7 +3,9 @@ import CharityController from "../controllers/charity.controller";
 
 const router = Router();
 
-router.get("/", CharityController.getAll); // let's get getAll set up and working, then move on to the other one
-// get charity name by charity id
+// get all charities in database
+router.get("/", CharityController.getAll);
+// get one charity's name by its id
+router.get("/:id", CharityController.getCharity);
 
 export default router;
