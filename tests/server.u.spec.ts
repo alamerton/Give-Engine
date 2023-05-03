@@ -1,8 +1,8 @@
 import request from "supertest";
 import app from "../src/server";
 
-describe("Test server", () => {
-  test("that a get request to the API endpoint returns a list of charities", async () => {
+describe("Test Charities API Express Server", () => {
+  test("the '/' endpoint with a GET request", async () => {
     // arrange
     const expectedResult = {
       charities: [
@@ -416,7 +416,7 @@ describe("Test server", () => {
     // assert
     expect(res.body).toEqual(expectedResult);
   });
-  test("that a get request to the API endpoint returns a list of charities", async () => {
+  test("the '/:id' endpoint with a GET request containing a charity id", async () => {
     // arrange
     const id = 1000671;
     const expectedResult = {
@@ -437,6 +437,7 @@ describe("Test server", () => {
       })
     );
   });
+  test("that ")
 });
 
 // unknown id
