@@ -2,9 +2,9 @@ import request from "supertest";
 import app from "../src/server";
 
 describe("Test server", () => {
-  test("Catch-all route", async () => {
+  test("that a get request to the API endpoint returns a list of charities", async () => {
     // arrange
-    const charityArray = {
+    const expectedResult = {
       charities: [
         {
           id: 1000671,
@@ -414,6 +414,6 @@ describe("Test server", () => {
     // act
     const res = await request(app).get("/");
     // assert
-    expect(res.body).toEqual(charityArray);
+    expect(res.body).toEqual(expectedResult);
   });
 });

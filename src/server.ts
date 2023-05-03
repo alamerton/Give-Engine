@@ -1,12 +1,12 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import charityRoutes from "./routes/charity.route";
+import router from "./routes/charity.route";
 
 const server = express();
 server.use(cors());
 server.use(bodyParser.json());
-server.use("/", charityRoutes);
+server.use("/", router);
 
 const port = 5000;
 
