@@ -416,4 +416,29 @@ describe("Test server", () => {
     // assert
     expect(res.body).toEqual(expectedResult);
   });
+  test("that a get request to the API endpoint returns a list of charities", async () => {
+    // arrange
+    const id = 1000671;
+    const expectedResult = {
+      id: 1000671,
+      name: "FAMILIES IN CARE",
+      url: "http://www.familiesincare.com",
+    };
+    // act
+    const res = await request(app).get(`/${id}`);
+    // assert
+    expect(res.body).toEqual(
+      expect.objectContaining({
+        charity: {
+          id: 1000671,
+          name: "FAMILIES IN CARE",
+          url: "http://www.familiesincare.com",
+        },
+      })
+    );
+  });
 });
+
+// unknown id
+// incorrect http request
+// improper id
