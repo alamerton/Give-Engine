@@ -18,24 +18,17 @@ const RecommendationList: React.FC = () => {
 
   useEffect(() => {
     const getRecommendations = async () => {
-      // TODO: make into a method
-      // gets a liked charity by the user id
-
       const request1 = {
         userId: sessionStorage.getItem("userId"),
       };
       const response1 = await axios
-        // const like = await axios
         .post("http://localhost:5002/getLikeByUserId/", request1)
         .catch(function (error) {
           console.log("Requested user has no likes", error.message);
           navigate("/criteria");
         });
-
       const like: Like = response1?.data.like;
-
       const charityId = like.charityId;
-
       if (!charityId) {
         console.log("User has no likes, but got through the first handler");
         navigate("/criteria");
@@ -56,9 +49,6 @@ const RecommendationList: React.FC = () => {
           url: response2?.data.charity.url,
         };
         // call recommender api to get recommendations using that charity as the key
-        // TODO: make into a method
-        // const response = await axios.post<{ charities: ICharity[] }>(
-
         const request3 = {
           charityName: charity.name,
         };
@@ -67,7 +57,6 @@ const RecommendationList: React.FC = () => {
           "http://127.0.0.1:8001/",
           request3
         );
-
         // get charities by these ids and return a list containing their respective charity objects
         const recommendedCharities: ICharity[] = [];
         for (let i = 0; i < 10; i++) {
@@ -80,15 +69,10 @@ const RecommendationList: React.FC = () => {
           };
           recommendedCharities.push(charity);
         }
-
         // maybe by saving the charities to a list and saving that list to setRecommendations
-
         setRecommendations(recommendedCharities);
       }
     };
-    // call charity api to get charity information recommended charities?
-
-    // use names to call database and get charity objects?
     getRecommendations();
   }, []);
 
