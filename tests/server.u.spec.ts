@@ -419,7 +419,7 @@ describe("Test Charities API Express Server", () => {
   test("the '/:id' endpoint with a GET request containing a charity id", async () => {
     // arrange
     const id = 1000671;
-    const expectedResult = {
+    const expectedCharity = {
       id: 1000671,
       name: "FAMILIES IN CARE",
       url: "http://www.familiesincare.com",
@@ -429,17 +429,22 @@ describe("Test Charities API Express Server", () => {
     // assert
     expect(res.body).toEqual(
       expect.objectContaining({
-        charity: {
-          id: 1000671,
-          name: "FAMILIES IN CARE",
-          url: "http://www.familiesincare.com",
-        },
+        charity: expectedCharity,
       })
     );
   });
-  test("that ")
+  test("the '/:id' endpoint with a GET request containing a charity id that is not present in the database", async () => {
+    // arrange
+    const id = 1000000;
+    const expectedError = {
+      error: {},
+    };
+    // act
+    const res = await request(app).get(`/${id}`);
+    // assert
+    expect(res.body).toEqual(expect.objectContaining({}));
+  });
 });
 
-// unknown id
 // incorrect http request
 // improper id
