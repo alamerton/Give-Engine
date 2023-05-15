@@ -1,15 +1,17 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import charityRoutes from "./routes/charity.route";
+import router from "./routes/charity.route";
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use("/", charityRoutes);
+const server = express();
+server.use(cors());
+server.use(bodyParser.json());
+server.use("/", router);
 
 const port = 5000;
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+export default server;
