@@ -7,7 +7,6 @@ from urllib.request import Request
 # use charity URL to access its webpage and turn the HTML into a document of terms, handling errors
 # As it can be seen by the number of web issues, the data source is less than optimal
 
-
 def getContentFromURL(url):
     # Create a suitable web scraping HTTP request
     req = Request(
@@ -45,9 +44,7 @@ def returnCharityListWithDocuments(df):
         charityId = df['Charity ID'][i]
         # save charity name
         charityName = df['Name'][i]
-        # if url field is not null!
-        # get and save page as document
-        #       if df['Website'][i] != None: # Code to same effect not using pandas library isnull, not sure which is best
+        # if url field is not null, get and save page as document
         if pd.isnull(df.loc[i, 'Website']):
             charityTermDocument = '' # Unfortunately, many website sections of CharityBase's data are empty
         else:

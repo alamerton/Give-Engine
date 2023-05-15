@@ -12,16 +12,20 @@ CORS(app)
 # open charity information dataframe
 dataFrame2 = pd.read_csv('./dataFrameWithDocuments.csv')
 
+# Create a count vectorizer with english stop words
 countVector = CountVectorizer(stop_words='english')
 
-# transform matrix into a document-term matrix
+#  Create a document-term matrix using the count vectoriser on the html content in dataframe
 count_matrix = countVector.fit_transform(
     dataFrame2['document'].values.astype('U'))
 
+# Save charity names to a pandas array with indices
 indices = pd.Series(dataFrame2.index, index=dataFrame2['name'])
+
 
 all_names = [dataFrame2['name'][i] for i in range(len(dataFrame2['name']))]
 
+print(all_names)
 
 def get_recommendations(name):
     cosSim = cosine_similarity(count_matrix, count_matrix)
