@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../src/server";
+import server from "../src/server";
 
 describe("Test Charities API Express Server", () => {
   test("the '/' endpoint with a GET request", async () => {
@@ -412,7 +412,7 @@ describe("Test Charities API Express Server", () => {
       ],
     };
     // act
-    const res = await request(app).get("/");
+    const res = await request(server).get("/");
     // assert
     expect(res.body).toEqual(expectedResult);
   });
@@ -425,7 +425,7 @@ describe("Test Charities API Express Server", () => {
       url: "http://www.familiesincare.com",
     };
     // act
-    const res = await request(app).get(`/${id}`);
+    const res = await request(server).get(`/${id}`);
     // assert
     expect(res.body).toEqual(
       expect.objectContaining({
@@ -440,7 +440,7 @@ describe("Test Charities API Express Server", () => {
       error: {},
     };
     // act
-    const res = await request(app).get(`/${id}`);
+    const res = await request(server).get(`/${id}`);
     // assert
     expect(res.body).toEqual(expect.objectContaining({}));
   });
