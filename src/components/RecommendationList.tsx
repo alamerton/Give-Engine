@@ -12,25 +12,33 @@ interface ICharity {
   url: string;
 }
 
+function handleUserWithNoLikes(error: Error) { // TODO: check if this can happen. If not, remove
+  const navigate = useNavigate();
+  console.log("Requested user has no likes", error.message);
+  navigate("/criteria");
+}
+
+async function getCharityIdByUserId() {
+  const userId = {
+    userId: sessionStorage.getItem("userId"),
+  };
+  const response = await axios
+    .post("http://localhost:5002/getLikeByUserId/", userId)
+    .catch(function (error) {
+      handleUserWithNoLikes(error);
+    });
+  return response?.data.like.charityId
+}
+
 const RecommendationList: React.FC = () => {
   const navigate = useNavigate();
   const [recommendations, setRecommendations] = useState<ICharity[]>([]);
 
   useEffect(() => {
     const getRecommendations = async () => {
-      const request1 = {
-        userId: sessionStorage.getItem("userId"),
-      };
-      const response1 = await axios
-        .post("http://localhost:5002/getLikeByUserId/", request1)
-        .catch(function (error) {
-          console.log("Requested user has no likes", error.message);
-          navigate("/criteria");
-        });
-      const like: Like = response1?.data.like;
-      const charityId = like.charityId;
+      const charityId = await getCharityIdByUserId()
       if (!charityId) {
-        console.log("User has no likes, but got through the first handler");
+        console.log("User has no likes, but got through the first handler");  // TODO: check if this can happen. If not, remove
         navigate("/criteria");
       } else {
         const response2 = await axios
