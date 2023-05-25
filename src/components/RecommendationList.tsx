@@ -33,31 +33,24 @@ const RecommendationList: React.FC = () => {
         console.log("User has no likes, but got through the first handler");
         navigate("/criteria");
       } else {
-        // get charity name by id
-        // make a call to the charity api to get a charity's name
         const response2 = await axios
-          // .post("charity endpoint", like)
-          .get(`http://localhost:5000/${charityId}`) // this can be a get request that sends the charityId through the url
+          .get(`http://localhost:5000/${charityId}`)
           .catch(function (error) {
             console.log("Error: " + error);
           });
 
         const charity: ICharity = {
-          // TODO: refactor
           id: response2?.data.charity.id,
           name: response2?.data.charity.name,
           url: response2?.data.charity.url,
         };
-        // call recommender api to get recommendations using that charity as the key
         const request3 = {
           charityName: charity.name,
         };
-        // returns list of ids
         const recommendedCharityIDs = await axios.post(
           "http://127.0.0.1:8001/",
           request3
         );
-        // get charities by these ids and return a list containing their respective charity objects
         const recommendedCharities: ICharity[] = [];
         for (let i = 0; i < 10; i++) {
           let id = recommendedCharityIDs.data[i];
@@ -69,7 +62,6 @@ const RecommendationList: React.FC = () => {
           };
           recommendedCharities.push(charity);
         }
-        // maybe by saving the charities to a list and saving that list to setRecommendations
         setRecommendations(recommendedCharities);
       }
     };
