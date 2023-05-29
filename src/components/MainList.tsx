@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  List,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Card, List, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import titleCase from "../helper/TitleCapitalisation";
@@ -48,6 +42,12 @@ const MainList: React.FC = () => {
           >
             <Box>
               <Typography variant="h5">{titleCase(charity.name)}</Typography>
+              <Box>
+                <Typography sx={{ padding: "0 0 0.5em 0", fontSize: "1.2rem" }}>
+                  Short charity description short charity description short
+                  charity description short charity description
+                </Typography>
+              </Box>
               <StarRating />
             </Box>
             <Box
