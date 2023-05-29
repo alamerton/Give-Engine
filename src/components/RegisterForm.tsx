@@ -82,6 +82,8 @@ export default function RegisterForm() {
               display: "flex",
               flexDirection: "column",
               width: "80%",
+              padding: "1rem 0 1rem 0",
+              margin: "auto",
             }}
           >
             <TextField
@@ -121,13 +123,6 @@ export default function RegisterForm() {
             >
               Register
             </Button>
-            <Link
-              href="#"
-              underline="hover"
-              sx={{ padding: "1rem 0 1rem 0", margin: "auto" }}
-            >
-              Don't have an account? Register
-            </Link>
           </Container>
         </form>
       </Paper>
