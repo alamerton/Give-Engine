@@ -20,29 +20,29 @@ const RecommendationList: React.FC = () => {
       const userId = {
         userId: sessionStorage.getItem("userId"),
       };
-      const response = await axios
+      const likeEndpointResponse = await axios
         .post("http://localhost:5002/getLikeByUserId/", userId)
         .catch(function (error) {
           console.log("Requested user has no likes", error.message);
           navigate("/criteria");
         });
-      const charityId = response?.data.like.charityId;
-      const response2 = await axios
+      const charityId = likeEndpointResponse?.data.like.charityId;
+      const charityEndpointResponse = await axios
         .get(`http://localhost:5000/${charityId}`)
         .catch(function (error) {
           console.log("Error: " + error);
         });
       const charity: ICharity = {
-        id: response2?.data.charity.id,
-        name: response2?.data.charity.name,
-        url: response2?.data.charity.url,
+        id: charityEndpointResponse?.data.charity.id,
+        name: charityEndpointResponse?.data.charity.name,
+        url: charityEndpointResponse?.data.charity.url,
       };
-      const request3 = {
+      const charityNameObject = {
         charityName: charity.name,
       };
       const recommendedCharityIDs = await axios.post(
         "http://127.0.0.1:8001/",
-        request3
+        charityNameObject
       );
       const recommendedCharities: ICharity[] = [];
       // It gets 10 charities from the endpoint, creates charity objects and populates the array with them
