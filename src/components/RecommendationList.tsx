@@ -12,12 +12,6 @@ interface ICharity {
   url: string;
 }
 
-function handleUserWithNoLikes(error: Error) { // TODO: check if this can happen. If not, remove
-  const navigate = useNavigate();
-  console.log("Requested user has no likes", error.message);
-  navigate("/criteria");
-}
-
 async function getCharityIdByUserId() {
   const userId = {
     userId: sessionStorage.getItem("userId"),
@@ -25,7 +19,9 @@ async function getCharityIdByUserId() {
   const response = await axios
     .post("http://localhost:5002/getLikeByUserId/", userId)
     .catch(function (error) {
-      handleUserWithNoLikes(error);
+      const navigate = useNavigate();
+      console.log("Requested user has no likes", error.message);
+      navigate("/criteria");
     });
   return response?.data.like.charityId
 }
