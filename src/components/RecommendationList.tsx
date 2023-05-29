@@ -33,41 +33,35 @@ const RecommendationList: React.FC = () => {
   useEffect(() => {
     const getRecommendations = async () => {
       const charityId = await getCharityIdByUserId()
-      if (!charityId) {
-        console.log("User has no likes, but got through the first handler");  // TODO: check if this can happen. If not, remove
-        navigate("/criteria");
-      } else {
-        const response2 = await axios
-          .get(`http://localhost:5000/${charityId}`)
-          .catch(function (error) {
-            console.log("Error: " + error);
-          });
-
+      const response2 = await axios
+        .get(`http://localhost:5000/${charityId}`)
+        .catch(function (error) {
+          console.log("Error: " + error);
+        });
+      const charity: ICharity = {
+        id: response2?.data.charity.id,
+        name: response2?.data.charity.name,
+        url: response2?.data.charity.url,
+      };
+      const request3 = {
+        charityName: charity.name,
+      };
+      const recommendedCharityIDs = await axios.post(
+        "http://127.0.0.1:8001/",
+        request3
+      );
+      const recommendedCharities: ICharity[] = [];
+      for (let i = 0; i < 10; i++) {
+        let id = recommendedCharityIDs.data[i];
+        const charityObject = await axios.get(`http://localhost:5000/${id}`);
         const charity: ICharity = {
-          id: response2?.data.charity.id,
-          name: response2?.data.charity.name,
-          url: response2?.data.charity.url,
+          id: charityObject?.data.charity.id,
+          name: charityObject?.data.charity.name,
+          url: charityObject?.data.charity.url,
         };
-        const request3 = {
-          charityName: charity.name,
-        };
-        const recommendedCharityIDs = await axios.post(
-          "http://127.0.0.1:8001/",
-          request3
-        );
-        const recommendedCharities: ICharity[] = [];
-        for (let i = 0; i < 10; i++) {
-          let id = recommendedCharityIDs.data[i];
-          const charityObject = await axios.get(`http://localhost:5000/${id}`);
-          const charity: ICharity = {
-            id: charityObject?.data.charity.id,
-            name: charityObject?.data.charity.name,
-            url: charityObject?.data.charity.url,
-          };
-          recommendedCharities.push(charity);
-        }
-        setRecommendations(recommendedCharities);
+        recommendedCharities.push(charity);
       }
+      setRecommendations(recommendedCharities);
     };
     getRecommendations();
   }, []);
