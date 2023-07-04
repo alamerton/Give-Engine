@@ -3,7 +3,7 @@ import CharityController from "../controllers/charity.controller";
 
 const router = Router();
 
-router.get("/", CharityController.getAll);
-router.get("/:id", CharityController.getCharity);
+router.get("/charities", CharityController.getAll);
+router.get("/charities/:id", CharityController.getCharity);
 
 export default router;
