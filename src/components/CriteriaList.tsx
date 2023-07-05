@@ -15,7 +15,7 @@ type Charity = {
 async function createLike(charity: Charity) {
   try {
     const userId = sessionStorage.getItem("userId");
-    await axios.post("http://localhost:5002/", {
+    await axios.post("http://localhost:5000/likes/", {
       userId: userId,
       charityId: charity.id,
     });
@@ -27,7 +27,7 @@ async function createLike(charity: Charity) {
 async function removeLike(charity: Charity) {
   try {
     const userId = sessionStorage.getItem("userId");
-    await axios.delete("http://localhost:5002/", {
+    await axios.delete("http://localhost:5000/likes/", {
       data: {
         userId: userId,
         charityId: charity.id,
@@ -45,7 +45,7 @@ const CriteriaList: React.FC = () => {
   useEffect(() => {
     const getCharities = async () => {
       const response = await axios.get<{ charities: Charity[] }>(
-        "http://localhost:5000/"
+        "http://localhost:5000/charities/"
       );
       setCharities(response.data.charities.slice(0, 9));
       for (let charity in charities) {

@@ -16,7 +16,7 @@ const MainList: React.FC = () => {
   useEffect(() => {
     const getCharities = async () => {
       const response = await axios.get<{ charities: ICharity[] }>(
-        "http://localhost:5000/"
+        "http://localhost:5000/charities/"
       );
       setCharities(response.data.charities);
     };
