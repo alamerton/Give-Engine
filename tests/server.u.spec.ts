@@ -514,7 +514,3 @@ describe("Test the Users API Express Server", () => {
     expect(response.status).toEqual(expectedStatus);
   });
 });
-
-
-// incorrect http request
-// improper id
