@@ -19,7 +19,7 @@ export default function RegisterForm() {
     confirmPassword: string
   ) {
     const response = await axios
-      .post("http://localhost:5001/create", {
+      .post("http://localhost:5000/users/create", {
         email: email,
         password: password,
         confirmPassword: confirmPassword,

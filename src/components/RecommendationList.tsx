@@ -45,7 +45,6 @@ const RecommendationList: React.FC = () => {
         charityNameObject
       );
       const recommendedCharities: ICharity[] = [];
-      // It gets 10 charities from the endpoint, creates charity objects and populates the array with them
       for (let i = 0; i < 10; i++) {
         let id = recommendedCharityIDs.data[i];
         const charityObject = await axios.get(`http://localhost:5000/${id}`);
@@ -80,6 +79,10 @@ const RecommendationList: React.FC = () => {
           >
             <Box>
               <Typography variant="h5">{titleCase(charity.name)}</Typography>
+              <Typography sx={{ padding: "0 0 0.5em 0", fontSize: "1.2rem" }}>
+                Short charity description short charity description short
+                charity description short charity description
+              </Typography>
               <StarRating />
             </Box>
             <Box

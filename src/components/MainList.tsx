@@ -42,12 +42,10 @@ const MainList: React.FC = () => {
           >
             <Box>
               <Typography variant="h5">{titleCase(charity.name)}</Typography>
-              <Box>
-                <Typography sx={{ padding: "0 0 0.5em 0", fontSize: "1.2rem" }}>
-                  Short charity description short charity description short
-                  charity description short charity description
-                </Typography>
-              </Box>
+              <Typography sx={{ padding: "0 0 0.5em 0", fontSize: "1.2rem" }}>
+                Short charity description short charity description short
+                charity description short charity description
+              </Typography>
               <StarRating />
             </Box>
             <Box
