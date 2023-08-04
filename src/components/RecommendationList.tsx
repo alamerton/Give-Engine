@@ -28,7 +28,7 @@ const RecommendationList: React.FC = () => {
         });
       const charityId = likeEndpointResponse?.data.like.charityId;
       const charityEndpointResponse = await axios
-        .get(`http://localhost:5000/charities/${charityId}`)
+        .get(`http://localhost:5000/getCharityById/${charityId}`) // throwing error
         .catch(function (error) {
           console.log("Error: " + error);
         });
@@ -40,6 +40,8 @@ const RecommendationList: React.FC = () => {
       const charityNameObject = {
         charityName: charity.name,
       };
+      console.log("Charity name object: ", charityNameObject);
+
       const recommendedCharityIDs = await axios.post(
         "http://127.0.0.1:8001/",
         charityNameObject
@@ -47,7 +49,10 @@ const RecommendationList: React.FC = () => {
       const recommendedCharities: ICharity[] = [];
       for (let i = 0; i < 10; i++) {
         let id = recommendedCharityIDs.data[i];
-        const charityObject = await axios.get(`http://localhost:5000/charities/${id}`);
+        const charityObject = await axios.get(
+          `http://localhost:5000/getCharityById/${id}`
+        );
+        console.log("CHARITY OBJECT: ", charityObject);
         const charity: ICharity = {
           id: charityObject?.data.charity.id,
           name: charityObject?.data.charity.name,

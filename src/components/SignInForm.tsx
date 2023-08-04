@@ -15,7 +15,7 @@ export default function SignInForm() {
   const navigate = useNavigate();
   async function handleSubmit(email: string, password: string) {
     await axios
-      .post("http://localhost:5000/users/signin", {
+      .post("http://localhost:5000/users/signIn", {
         email: email,
         password: password,
       })
