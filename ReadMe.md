@@ -6,17 +6,6 @@ Welcome to the **Give Engine** repository, a software system designed to facilit
 
 The goal of this project is to increase the incidence of impactful charitable giving by synthesizing a web application that recommends charities to users based on various criteria, such as transparency, financial health, and overall impact. The system orders charities by impact, provides recommendations, and offers a donation platform.
 
-## Repositories
-
-This project is split into several microservices and components, each hosted in separate repositories:
-
-- Give Engine Front-End
-- [Give Engine Charities API](https://github.com/alamerton/give-engine-charities-api)
-- [Give Engine Users API](https://github.com/alamerton/give-engine-users-api)
-- [Give Engine Likes API](https://github.com/alamerton/give-engine-likes-api)
-- [Give Engine Recommender](https://github.com/alamerton/give-engine-recommender)
-- [Give Engine Data Schemas](https://github.com/alamerton/give-engine-data-schemas)
-
 ## Installation and Setup
 
 To run the system, follow these steps:
